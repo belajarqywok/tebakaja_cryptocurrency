@@ -7,8 +7,8 @@ on:
     tags:
       - '*'   
   schedule:
-    - cron: "0 7 * * *"
-    # 14 - 7 = 7
+    - cron: "0 8 * * *"
+    # 15 - 7 = 8
 
 jobs:
   extraction_train_modeling:
@@ -28,7 +28,7 @@ jobs:
       - name: Read pipeline schedule date
         id: read_schedule
         run: |
-          SCHEDULE_DATE=$(cat schedulers/lstm_gru_schedule.ctl)
+          SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
           echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
 
       - name: Get current date
@@ -66,7 +66,7 @@ jobs:
 
       - name: Set Pipeline Schedule
         if: env.match != 'true'
-        run: echo "$(date +'%Y-%m-%d')" > schedulers/lstm_gru_schedule.ctl
+        run: echo "$(date +'%Y-%m-%d')" > schedulers/gru_schedule.ctl
           
       - name: Zip Posttrained, Models, and Pickles
         if: env.match != 'true'
@@ -142,7 +142,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          branch: main 
+          branch: production 
 
   # model_deployment:
   #   name: Model Deployment

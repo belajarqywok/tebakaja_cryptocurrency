@@ -7,8 +7,8 @@ on:
     tags:
       - '*'   
   schedule:
-    - cron: "0 11 * * *"
-    # 18 - 7 = 11
+    - cron: "0 9 * * *"
+    # 16 - 7 = 9
 
 jobs:
   extraction_train_modeling:
@@ -142,7 +142,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          branch: main 
+          branch: production 
 
   # model_deployment:
   #   name: Model Deployment
