@@ -48,7 +48,7 @@ jobs:
         if: env.match != 'true'
         run: |
           mkdir datasets
-          wget https://github.com/belajarqywok/cryptocurrency_prediction/raw/main/postman/symbols.json \
+          wget https://raw.githubusercontent.com/tebakaja/tebakaja_cryptocurrency/production/postman/symbols.json \
             -O postman/symbols.json
           go run scraper.go
 
@@ -80,9 +80,9 @@ jobs:
         if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
-          credentials: ${{ secrets.GDRIVE_CRED }}
+          credentials: ${{ secrets.GDRIVE_LSTM_CRED }}
           filename: datasets.zip
-          folderId: ${{ secrets.GDRIVE_CRYPTO_ID }}
+          folderId: ${{ secrets.GDRIVE_LSTM_ID }}
           name: datasets.zip
           overwrite: "true"
           
@@ -90,7 +90,7 @@ jobs:
         if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
-          credentials: ${{ secrets.GDRIVE_CRED }}
+          credentials: ${{ secrets.GDRIVE_LSTM_CRED }}
           filename: models.zip
           folderId: ${{ secrets.GDRIVE_LSTM_ID }}
           name: models.zip
@@ -100,7 +100,7 @@ jobs:
         if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
-          credentials: ${{ secrets.GDRIVE_CRED }}
+          credentials: ${{ secrets.GDRIVE_LSTM_CRED }}
           filename: pickles.zip
           folderId: ${{ secrets.GDRIVE_LSTM_ID }}
           name: pickles.zip
@@ -110,7 +110,7 @@ jobs:
         if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
-          credentials: ${{ secrets.GDRIVE_CRED }}
+          credentials: ${{ secrets.GDRIVE_LSTM_CRED }}
           filename: posttrained.zip
           folderId: ${{ secrets.GDRIVE_LSTM_ID }}
           name: posttrained.zip
