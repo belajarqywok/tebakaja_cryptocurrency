@@ -3,7 +3,7 @@ name: GRU Pipeline
 on:
   push:
     branches:
-      - main
+      - production
     tags:
       - '*'   
   schedule:

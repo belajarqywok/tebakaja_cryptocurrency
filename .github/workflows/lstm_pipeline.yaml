@@ -3,7 +3,7 @@ name: LSTM Pipeline
 on:
   push:
     branches:
-      - main
+      - production
     tags:
       - '*'   
   schedule:
