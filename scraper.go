@@ -11,6 +11,7 @@ import (
 	"strconv"
 	"sync"
 	"time"
+	"flag"
 )
 
 
@@ -88,7 +89,11 @@ func getCurrentUnixTimestamp() int64 {
 
 
 func main() {
-	jsonFile, err := os.Open("./postman/symbols.json")
+	symbols_file := flag.String("symbols-file", "default", "symbols file")
+	flag.Parse()
+
+	// jsonFile, err := os.Open("./postman/symbols.json")
+	jsonFile, err := os.Open(*symbols_file)
 	if err != nil {
 		log.Fatalf("[ERROR] failed to open JSON file: %v", err)
 	}

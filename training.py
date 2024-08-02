@@ -167,14 +167,12 @@ class PostProcessor:
         with open(filename, 'w') as f:
             json.dump(data, f)
 
-def main(algorithm: str):
+def main(algorithm: str, sequence_length: int, epochs: int, batch_size: int):
     datasets_path = './datasets'
     models_path   = './models'
     posttrained   = './posttrained'
     pickle_file   = './pickles'
 
-    sequence_length = 60
-    epochs = 200
     batch_size = 32
 
     data_processor = DataProcessor(datasets_path)
@@ -230,10 +228,19 @@ def main(algorithm: str):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "Tebakaja Model Trainer")
 
-    parser.add_argument('-a', '--algorithm', 
-        type = str, required = True,
+    parser.add_argument('-a', '--algorithm', type = str, required = True,
         help = 'select the algorithm to be trained (LSTM, GRU, LSTM_GRU)')
+
+    parser.add_argument('-e', '--epochs', type = int, required = True, help = 'epochs')
+    parser.add_argument('-b', '--batchs', type = int, required = True, help = 'batch length')
+    parser.add_argument('-s', '--sequences', type = int, required = True, help = 'sequences length')
 
     args = parser.parse_args()
 
-    main(algorithm = args.algorithm)
+    main(
+        epochs     = args.epochs,
+        batch_size = args.batchs,
+        algorithm  = args.algorithm,
+        sequence_length = args.sequences
+    )
+

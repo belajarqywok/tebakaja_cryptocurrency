@@ -48,9 +48,8 @@ jobs:
         if: env.match != 'true'
         run: |
           mkdir datasets
-          wget https://raw.githubusercontent.com/tebakaja/tebakaja_cryptocurrency/production/postman/symbols.json \
-            -O postman/symbols.json
-          go run scraper.go
+          go run scraper.go \
+            --symbols-file=./postman/symbols_test.json
 
       - name: Install Libraries
         if: env.match != 'true'
@@ -62,7 +61,12 @@ jobs:
           mkdir models
           mkdir pickles
           mkdir posttrained
-          python training.py --algorithm=LSTM
+
+          python training.py \
+            --epochs=200     \
+            --batchs=32      \
+            --sequences=5    \
+            --algorithm=LSTM
 
       - name: Set Pipeline Schedule
         if: env.match != 'true'
