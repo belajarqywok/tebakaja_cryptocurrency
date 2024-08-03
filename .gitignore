@@ -2,6 +2,7 @@
 /postman/dataset.url
 
 # Environments
+/venv
 /bin
 /Lib
 /lib64
@@ -16,4 +17,5 @@
 /models
 /pickles
 /datasets
+/resources
 /posttrained

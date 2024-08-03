@@ -1,31 +1,27 @@
 import os
 from http import HTTPStatus
 from fastapi.responses import JSONResponse
-from restful.services import cryptocurrency_svc
-from restful.schemas import CryptocurrencyPredictionSchema
+from restful.services import ForecastingService
+from restful.schemas import ForecastingServiceSchema
 
 
-# Cryptocurrency Controller
-class cryptocurrency_controller:
-    # Cryptocurrency Service
-    __SERVICE = cryptocurrency_svc()
+""" Forecasting Controller """
+class ForecastingControllers:
 
-    # Cryptocurrency List
-    async def crypto_list(self) -> JSONResponse:
+    __SERVICE: ForecastingService = ForecastingService()
+
+
+    """
+        Algorithms Controller
+    """
+    async def algorithms_controller(self) -> JSONResponse:
         try:
-            DATASETS_PATH = './datasets'
-            DATASETS = sorted(
-                [
-                    item.replace(".csv", "") for item in os.listdir(DATASETS_PATH)
-                    if os.path.isfile(os.path.join(DATASETS_PATH, item)) and item.endswith('.csv')
-                ]
-            )
-
+            algorithms: list = sorted(os.listdir("resources/algorithms"))
             return JSONResponse(
                 content = {
                     'message': 'Success',
                     'status_code': HTTPStatus.OK,
-                    'data': DATASETS
+                    'data': algorithms
                 },
                 status_code = HTTPStatus.OK
             )
@@ -41,32 +37,82 @@ class cryptocurrency_controller:
                 status_code = HTTPStatus.INTERNAL_SERVER_ERROR
             )
 
-    # Cryptocurrency Controller
-    async def prediction(self, payload: CryptocurrencyPredictionSchema) -> JSONResponse:
+
+
+    """
+        Currency Controller
+    """
+    async def currencies_controller(self) -> JSONResponse:
         try:
-            DATASETS_PATH = './datasets'
-            DATASETS = sorted(
+            path: str = './resources/datasets'
+            datasets: list = sorted(
                 [
-                    item.replace(".csv", "") for item in os.listdir(DATASETS_PATH)
-                    if os.path.isfile(os.path.join(DATASETS_PATH, item)) and item.endswith('.csv')
+                    item.replace(".csv", "") for item in os.listdir(path)
+                    if os.path.isfile(os.path.join(path, item)) and item.endswith('.csv')
                 ]
             )
 
-            # Validation
+            return JSONResponse(
+                content = {
+                    'message': 'Success',
+                    'status_code': HTTPStatus.OK,
+                    'data': datasets
+                },
+                status_code = HTTPStatus.OK
+            )
+
+        except Exception as error_message:
+            print(error_message)
+            return JSONResponse(
+                content = {
+                    'message': 'Internal Server Error',
+                    'status_code': HTTPStatus.INTERNAL_SERVER_ERROR,
+                    'data': None
+                },
+                status_code = HTTPStatus.INTERNAL_SERVER_ERROR
+            )
+
+
+
+    """ 
+        Forecasting Controller
+    """
+    async def forecasting_controller(self, payload: ForecastingServiceSchema) -> JSONResponse:
+        try:
+            path: str = './resources/datasets'
+            datasets: list = sorted(
+                [
+                    item.replace(".csv", "") for item in os.listdir(path)
+                    if os.path.isfile(os.path.join(path, item)) and item.endswith('.csv')
+                ]
+            )
+
+            if payload.currency not in datasets:
+                return JSONResponse(
+                    content = {
+                        'message': f'symbols "{payload.currency}" is not available.',
+                        'status_code': HTTPStatus.BAD_REQUEST,
+                        'data': None
+                    },
+                    status_code = HTTPStatus.BAD_REQUEST
+                )
+
+
             if (payload.days > 31) or (payload.days < 1):
                 return JSONResponse(
                     content = {
-                        'message': 'prediction days cannot be more than a month and cannot be less than 1',
+                        'message': 'days cannot be more than a month and cannot be less than 1',
                         'status_code': HTTPStatus.BAD_REQUEST,
                         'data': None
                     },
                     status_code = HTTPStatus.BAD_REQUEST
                 )
 
-            if payload.currency not in DATASETS:
+
+            if payload.algorithm not in os.listdir("resources/algorithms"):
                 return JSONResponse(
                     content = {
-                        'message': f'cryptocurrency {payload.currency} is not available.',
+                        'message': f'algorithm "{payload.algorithm}" is not available.',
                         'status_code': HTTPStatus.BAD_REQUEST,
                         'data': None
                     },
@@ -74,7 +120,7 @@ class cryptocurrency_controller:
                 )
 
 
-            prediction: dict = await self.__SERVICE.prediction(payload)
+            prediction: dict = await self.__SERVICE.forecasting(payload)
 
             if not prediction :
                 return JSONResponse(

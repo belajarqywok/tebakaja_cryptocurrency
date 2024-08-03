@@ -1494,14 +1494,14 @@ static const char *__pyx_f[] = {
 
 /*--- Type declarations ---*/
 struct __pyx_obj_9utilities_Utilities;
-struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils;
+struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils;
 
 /* "utilities.pyx":8
  * import cython
  * 
  * cdef class Utilities:             # <<<<<<<<<<<<<<
- *     async def cryptocurrency_prediction_utils(self,
- *         int days, int sequence_length, str model_name) -> tuple:
+ *     async def forecasting_utils(self, int sequence_length,
+ *         int days, str model_name, str algorithm) -> tuple:
  */
 struct __pyx_obj_9utilities_Utilities {
   PyObject_HEAD
@@ -1511,14 +1511,15 @@ struct __pyx_obj_9utilities_Utilities {
 /* "utilities.pyx":9
  * 
  * cdef class Utilities:
- *     async def cryptocurrency_prediction_utils(self,             # <<<<<<<<<<<<<<
- *         int days, int sequence_length, str model_name) -> tuple:
- *         cdef str model_path = os.path.join('./models', f'{model_name}.keras')
+ *     async def forecasting_utils(self, int sequence_length,             # <<<<<<<<<<<<<<
+ *         int days, str model_name, str algorithm) -> tuple:
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
  */
-struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils {
+struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils {
   PyObject_HEAD
   int __pyx_v__;
   PyObject *__pyx_v_actuals;
+  PyObject *__pyx_v_algorithm;
   PyObject *__pyx_8genexpr2__pyx_v_close;
   PyObject *__pyx_v_dataframe;
   PyObject *__pyx_v_dataframe_path;
@@ -1840,6 +1841,10 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
         likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
         PyObject_Format(s, f))
 #endif
+
+/* JoinPyUnicode.proto */
+static PyObject* __Pyx_PyUnicode_Join(PyObject* value_tuple, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char);
 
 /* UnicodeConcatInPlace.proto */
 # if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION >= 3
@@ -2674,7 +2679,7 @@ static const char __pyx_k_dict_2[] = "_dict";
 static const char __pyx_k_enable[] = "enable";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_joblib[] = "joblib";
-static const char __pyx_k_models[] = "./models";
+static const char __pyx_k_models[] = "/models";
 static const char __pyx_k_pandas[] = "pandas";
 static const char __pyx_k_pickle[] = "pickle";
 static const char __pyx_k_reduce[] = "__reduce__";
@@ -2686,7 +2691,7 @@ static const char __pyx_k_df_date[] = "df_date";
 static const char __pyx_k_disable[] = "disable";
 static const char __pyx_k_inplace[] = "inplace";
 static const char __pyx_k_lst_seq[] = "lst_seq";
-static const char __pyx_k_pickles[] = "./pickles";
+static const char __pyx_k_pickles[] = "/pickles";
 static const char __pyx_k_predict[] = "predict";
 static const char __pyx_k_df_close[] = "df_close";
 static const char __pyx_k_getstate[] = "__getstate__";
@@ -2695,6 +2700,7 @@ static const char __pyx_k_setstate[] = "__setstate__";
 static const char __pyx_k_strftime[] = "strftime";
 static const char __pyx_k_Timedelta[] = "Timedelta";
 static const char __pyx_k_Utilities[] = "Utilities";
+static const char __pyx_k_algorithm[] = "algorithm";
 static const char __pyx_k_dataframe[] = "dataframe";
 static const char __pyx_k_isenabled[] = "isenabled";
 static const char __pyx_k_last_date[] = "last_date";
@@ -2709,7 +2715,7 @@ static const char __pyx_k_model_path[] = "model_path";
 static const char __pyx_k_pyx_result[] = "__pyx_result";
 static const char __pyx_k_PickleError[] = "PickleError";
 static const char __pyx_k_expand_dims[] = "expand_dims";
-static const char __pyx_k_posttrained[] = "./posttrained";
+static const char __pyx_k_posttrained[] = "/posttrained";
 static const char __pyx_k_predictions[] = "predictions";
 static const char __pyx_k_to_datetime[] = "to_datetime";
 static const char __pyx_k_initializing[] = "_initializing";
@@ -2729,25 +2735,26 @@ static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_standard_scaler[] = "standard_scaler";
 static const char __pyx_k_posttrained_json[] = "-posttrained.json";
 static const char __pyx_k_predicted_prices[] = "predicted_prices";
+static const char __pyx_k_forecasting_utils[] = "forecasting_utils";
 static const char __pyx_k_inverse_transform[] = "inverse_transform";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_minmax_scaler_pickle[] = "_minmax_scaler.pickle";
+static const char __pyx_k_resources_algorithms[] = "./resources/algorithms/";
 static const char __pyx_k_pyx_unpickle_Utilities[] = "__pyx_unpickle_Utilities";
 static const char __pyx_k_standard_scaler_pickle[] = "_standard_scaler.pickle";
 static const char __pyx_k_tensorflow_keras_models[] = "tensorflow.keras.models";
 static const char __pyx_k_Utilities___reduce_cython[] = "Utilities.__reduce_cython__";
 static const char __pyx_k_Utilities___setstate_cython[] = "Utilities.__setstate_cython__";
-static const char __pyx_k_cryptocurrency_prediction_utils[] = "cryptocurrency_prediction_utils";
+static const char __pyx_k_Utilities_forecasting_utils[] = "Utilities.forecasting_utils";
 static const char __pyx_k_Incompatible_checksums_0x_x_vs_0[] = "Incompatible checksums (0x%x vs (0xe3b0c44, 0xda39a3e, 0xd41d8cd) = ())";
-static const char __pyx_k_Utilities_cryptocurrency_predict[] = "Utilities.cryptocurrency_prediction_utils";
 /* #### Code section: decls ### */
-static PyObject *__pyx_pf_9utilities_9Utilities_cryptocurrency_prediction_utils(CYTHON_UNUSED struct __pyx_obj_9utilities_Utilities *__pyx_v_self, int __pyx_v_days, int __pyx_v_sequence_length, PyObject *__pyx_v_model_name); /* proto */
+static PyObject *__pyx_pf_9utilities_9Utilities_forecasting_utils(CYTHON_UNUSED struct __pyx_obj_9utilities_Utilities *__pyx_v_self, int __pyx_v_sequence_length, int __pyx_v_days, PyObject *__pyx_v_model_name, PyObject *__pyx_v_algorithm); /* proto */
 static PyObject *__pyx_pf_9utilities_9Utilities_3__reduce_cython__(struct __pyx_obj_9utilities_Utilities *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9utilities_9Utilities_5__setstate_cython__(struct __pyx_obj_9utilities_Utilities *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_9utilities___pyx_unpickle_Utilities(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_9utilities_Utilities(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_9utilities___pyx_scope_struct__forecasting_utils(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
 typedef struct {
@@ -2779,10 +2786,10 @@ typedef struct {
   #endif
   #if CYTHON_USE_MODULE_STATE
   PyObject *__pyx_type_9utilities_Utilities;
-  PyObject *__pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils;
+  PyObject *__pyx_type_9utilities___pyx_scope_struct__forecasting_utils;
   #endif
   PyTypeObject *__pyx_ptype_9utilities_Utilities;
-  PyTypeObject *__pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils;
+  PyTypeObject *__pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils;
   PyObject *__pyx_n_s_Close;
   PyObject *__pyx_n_s_Date;
   PyObject *__pyx_kp_s_Incompatible_checksums_0x_x_vs_0;
@@ -2791,13 +2798,14 @@ typedef struct {
   PyObject *__pyx_n_s_Utilities;
   PyObject *__pyx_n_s_Utilities___reduce_cython;
   PyObject *__pyx_n_s_Utilities___setstate_cython;
-  PyObject *__pyx_n_s_Utilities_cryptocurrency_predict;
+  PyObject *__pyx_n_s_Utilities_forecasting_utils;
   PyObject *__pyx_kp_s_Y_m_d;
   PyObject *__pyx_n_s__17;
   PyObject *__pyx_kp_u__7;
   PyObject *__pyx_n_s__8;
   PyObject *__pyx_n_s__9;
   PyObject *__pyx_n_s_actuals;
+  PyObject *__pyx_n_s_algorithm;
   PyObject *__pyx_n_s_append;
   PyObject *__pyx_n_s_args;
   PyObject *__pyx_n_s_asyncio_coroutines;
@@ -2805,7 +2813,6 @@ typedef struct {
   PyObject *__pyx_n_s_class_getitem;
   PyObject *__pyx_n_s_cline_in_traceback;
   PyObject *__pyx_n_s_close;
-  PyObject *__pyx_n_s_cryptocurrency_prediction_utils;
   PyObject *__pyx_n_s_dataframe;
   PyObject *__pyx_n_s_dataframe_path;
   PyObject *__pyx_n_s_date;
@@ -2817,6 +2824,7 @@ typedef struct {
   PyObject *__pyx_kp_u_disable;
   PyObject *__pyx_kp_u_enable;
   PyObject *__pyx_n_s_expand_dims;
+  PyObject *__pyx_n_s_forecasting_utils;
   PyObject *__pyx_kp_u_gc;
   PyObject *__pyx_n_s_getstate;
   PyObject *__pyx_n_s_iloc;
@@ -2841,7 +2849,7 @@ typedef struct {
   PyObject *__pyx_n_s_model;
   PyObject *__pyx_n_s_model_name;
   PyObject *__pyx_n_s_model_path;
-  PyObject *__pyx_kp_s_models;
+  PyObject *__pyx_kp_u_models;
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_n_s_new;
   PyObject *__pyx_n_s_numpy;
@@ -2849,8 +2857,8 @@ typedef struct {
   PyObject *__pyx_n_s_pandas;
   PyObject *__pyx_n_s_path;
   PyObject *__pyx_n_s_pickle;
-  PyObject *__pyx_kp_s_pickles;
-  PyObject *__pyx_kp_s_posttrained;
+  PyObject *__pyx_kp_u_pickles;
+  PyObject *__pyx_kp_u_posttrained;
   PyObject *__pyx_kp_u_posttrained_json;
   PyObject *__pyx_n_s_predict;
   PyObject *__pyx_n_s_predicted_price;
@@ -2868,6 +2876,7 @@ typedef struct {
   PyObject *__pyx_n_s_reduce;
   PyObject *__pyx_n_s_reduce_cython;
   PyObject *__pyx_n_s_reduce_ex;
+  PyObject *__pyx_kp_u_resources_algorithms;
   PyObject *__pyx_n_s_return;
   PyObject *__pyx_n_s_self;
   PyObject *__pyx_n_s_send;
@@ -2954,8 +2963,8 @@ static int __pyx_m_clear(PyObject *m) {
   #endif
   Py_CLEAR(clear_module_state->__pyx_ptype_9utilities_Utilities);
   Py_CLEAR(clear_module_state->__pyx_type_9utilities_Utilities);
-  Py_CLEAR(clear_module_state->__pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils);
-  Py_CLEAR(clear_module_state->__pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils);
+  Py_CLEAR(clear_module_state->__pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils);
+  Py_CLEAR(clear_module_state->__pyx_type_9utilities___pyx_scope_struct__forecasting_utils);
   Py_CLEAR(clear_module_state->__pyx_n_s_Close);
   Py_CLEAR(clear_module_state->__pyx_n_s_Date);
   Py_CLEAR(clear_module_state->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0);
@@ -2964,13 +2973,14 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_Utilities);
   Py_CLEAR(clear_module_state->__pyx_n_s_Utilities___reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_Utilities___setstate_cython);
-  Py_CLEAR(clear_module_state->__pyx_n_s_Utilities_cryptocurrency_predict);
+  Py_CLEAR(clear_module_state->__pyx_n_s_Utilities_forecasting_utils);
   Py_CLEAR(clear_module_state->__pyx_kp_s_Y_m_d);
   Py_CLEAR(clear_module_state->__pyx_n_s__17);
   Py_CLEAR(clear_module_state->__pyx_kp_u__7);
   Py_CLEAR(clear_module_state->__pyx_n_s__8);
   Py_CLEAR(clear_module_state->__pyx_n_s__9);
   Py_CLEAR(clear_module_state->__pyx_n_s_actuals);
+  Py_CLEAR(clear_module_state->__pyx_n_s_algorithm);
   Py_CLEAR(clear_module_state->__pyx_n_s_append);
   Py_CLEAR(clear_module_state->__pyx_n_s_args);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
@@ -2978,7 +2988,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_class_getitem);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
   Py_CLEAR(clear_module_state->__pyx_n_s_close);
-  Py_CLEAR(clear_module_state->__pyx_n_s_cryptocurrency_prediction_utils);
   Py_CLEAR(clear_module_state->__pyx_n_s_dataframe);
   Py_CLEAR(clear_module_state->__pyx_n_s_dataframe_path);
   Py_CLEAR(clear_module_state->__pyx_n_s_date);
@@ -2990,6 +2999,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_disable);
   Py_CLEAR(clear_module_state->__pyx_kp_u_enable);
   Py_CLEAR(clear_module_state->__pyx_n_s_expand_dims);
+  Py_CLEAR(clear_module_state->__pyx_n_s_forecasting_utils);
   Py_CLEAR(clear_module_state->__pyx_kp_u_gc);
   Py_CLEAR(clear_module_state->__pyx_n_s_getstate);
   Py_CLEAR(clear_module_state->__pyx_n_s_iloc);
@@ -3014,7 +3024,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_model);
   Py_CLEAR(clear_module_state->__pyx_n_s_model_name);
   Py_CLEAR(clear_module_state->__pyx_n_s_model_path);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_models);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_models);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_n_s_new);
   Py_CLEAR(clear_module_state->__pyx_n_s_numpy);
@@ -3022,8 +3032,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_pandas);
   Py_CLEAR(clear_module_state->__pyx_n_s_path);
   Py_CLEAR(clear_module_state->__pyx_n_s_pickle);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_pickles);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_posttrained);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_pickles);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_posttrained);
   Py_CLEAR(clear_module_state->__pyx_kp_u_posttrained_json);
   Py_CLEAR(clear_module_state->__pyx_n_s_predict);
   Py_CLEAR(clear_module_state->__pyx_n_s_predicted_price);
@@ -3041,6 +3051,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_ex);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_resources_algorithms);
   Py_CLEAR(clear_module_state->__pyx_n_s_return);
   Py_CLEAR(clear_module_state->__pyx_n_s_self);
   Py_CLEAR(clear_module_state->__pyx_n_s_send);
@@ -3105,8 +3116,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   #endif
   Py_VISIT(traverse_module_state->__pyx_ptype_9utilities_Utilities);
   Py_VISIT(traverse_module_state->__pyx_type_9utilities_Utilities);
-  Py_VISIT(traverse_module_state->__pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils);
-  Py_VISIT(traverse_module_state->__pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils);
+  Py_VISIT(traverse_module_state->__pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils);
+  Py_VISIT(traverse_module_state->__pyx_type_9utilities___pyx_scope_struct__forecasting_utils);
   Py_VISIT(traverse_module_state->__pyx_n_s_Close);
   Py_VISIT(traverse_module_state->__pyx_n_s_Date);
   Py_VISIT(traverse_module_state->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0);
@@ -3115,13 +3126,14 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_Utilities);
   Py_VISIT(traverse_module_state->__pyx_n_s_Utilities___reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_Utilities___setstate_cython);
-  Py_VISIT(traverse_module_state->__pyx_n_s_Utilities_cryptocurrency_predict);
+  Py_VISIT(traverse_module_state->__pyx_n_s_Utilities_forecasting_utils);
   Py_VISIT(traverse_module_state->__pyx_kp_s_Y_m_d);
   Py_VISIT(traverse_module_state->__pyx_n_s__17);
   Py_VISIT(traverse_module_state->__pyx_kp_u__7);
   Py_VISIT(traverse_module_state->__pyx_n_s__8);
   Py_VISIT(traverse_module_state->__pyx_n_s__9);
   Py_VISIT(traverse_module_state->__pyx_n_s_actuals);
+  Py_VISIT(traverse_module_state->__pyx_n_s_algorithm);
   Py_VISIT(traverse_module_state->__pyx_n_s_append);
   Py_VISIT(traverse_module_state->__pyx_n_s_args);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
@@ -3129,7 +3141,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_class_getitem);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
   Py_VISIT(traverse_module_state->__pyx_n_s_close);
-  Py_VISIT(traverse_module_state->__pyx_n_s_cryptocurrency_prediction_utils);
   Py_VISIT(traverse_module_state->__pyx_n_s_dataframe);
   Py_VISIT(traverse_module_state->__pyx_n_s_dataframe_path);
   Py_VISIT(traverse_module_state->__pyx_n_s_date);
@@ -3141,6 +3152,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_disable);
   Py_VISIT(traverse_module_state->__pyx_kp_u_enable);
   Py_VISIT(traverse_module_state->__pyx_n_s_expand_dims);
+  Py_VISIT(traverse_module_state->__pyx_n_s_forecasting_utils);
   Py_VISIT(traverse_module_state->__pyx_kp_u_gc);
   Py_VISIT(traverse_module_state->__pyx_n_s_getstate);
   Py_VISIT(traverse_module_state->__pyx_n_s_iloc);
@@ -3165,7 +3177,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_model);
   Py_VISIT(traverse_module_state->__pyx_n_s_model_name);
   Py_VISIT(traverse_module_state->__pyx_n_s_model_path);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_models);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_models);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_n_s_new);
   Py_VISIT(traverse_module_state->__pyx_n_s_numpy);
@@ -3173,8 +3185,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_pandas);
   Py_VISIT(traverse_module_state->__pyx_n_s_path);
   Py_VISIT(traverse_module_state->__pyx_n_s_pickle);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_pickles);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_posttrained);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_pickles);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_posttrained);
   Py_VISIT(traverse_module_state->__pyx_kp_u_posttrained_json);
   Py_VISIT(traverse_module_state->__pyx_n_s_predict);
   Py_VISIT(traverse_module_state->__pyx_n_s_predicted_price);
@@ -3192,6 +3204,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_ex);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_resources_algorithms);
   Py_VISIT(traverse_module_state->__pyx_n_s_return);
   Py_VISIT(traverse_module_state->__pyx_n_s_self);
   Py_VISIT(traverse_module_state->__pyx_n_s_send);
@@ -3266,10 +3279,10 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 #if CYTHON_USE_MODULE_STATE
 #define __pyx_type_9utilities_Utilities __pyx_mstate_global->__pyx_type_9utilities_Utilities
-#define __pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils __pyx_mstate_global->__pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils
+#define __pyx_type_9utilities___pyx_scope_struct__forecasting_utils __pyx_mstate_global->__pyx_type_9utilities___pyx_scope_struct__forecasting_utils
 #endif
 #define __pyx_ptype_9utilities_Utilities __pyx_mstate_global->__pyx_ptype_9utilities_Utilities
-#define __pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils __pyx_mstate_global->__pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils
+#define __pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils __pyx_mstate_global->__pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils
 #define __pyx_n_s_Close __pyx_mstate_global->__pyx_n_s_Close
 #define __pyx_n_s_Date __pyx_mstate_global->__pyx_n_s_Date
 #define __pyx_kp_s_Incompatible_checksums_0x_x_vs_0 __pyx_mstate_global->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0
@@ -3278,13 +3291,14 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_Utilities __pyx_mstate_global->__pyx_n_s_Utilities
 #define __pyx_n_s_Utilities___reduce_cython __pyx_mstate_global->__pyx_n_s_Utilities___reduce_cython
 #define __pyx_n_s_Utilities___setstate_cython __pyx_mstate_global->__pyx_n_s_Utilities___setstate_cython
-#define __pyx_n_s_Utilities_cryptocurrency_predict __pyx_mstate_global->__pyx_n_s_Utilities_cryptocurrency_predict
+#define __pyx_n_s_Utilities_forecasting_utils __pyx_mstate_global->__pyx_n_s_Utilities_forecasting_utils
 #define __pyx_kp_s_Y_m_d __pyx_mstate_global->__pyx_kp_s_Y_m_d
 #define __pyx_n_s__17 __pyx_mstate_global->__pyx_n_s__17
 #define __pyx_kp_u__7 __pyx_mstate_global->__pyx_kp_u__7
 #define __pyx_n_s__8 __pyx_mstate_global->__pyx_n_s__8
 #define __pyx_n_s__9 __pyx_mstate_global->__pyx_n_s__9
 #define __pyx_n_s_actuals __pyx_mstate_global->__pyx_n_s_actuals
+#define __pyx_n_s_algorithm __pyx_mstate_global->__pyx_n_s_algorithm
 #define __pyx_n_s_append __pyx_mstate_global->__pyx_n_s_append
 #define __pyx_n_s_args __pyx_mstate_global->__pyx_n_s_args
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
@@ -3292,7 +3306,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_class_getitem __pyx_mstate_global->__pyx_n_s_class_getitem
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
 #define __pyx_n_s_close __pyx_mstate_global->__pyx_n_s_close
-#define __pyx_n_s_cryptocurrency_prediction_utils __pyx_mstate_global->__pyx_n_s_cryptocurrency_prediction_utils
 #define __pyx_n_s_dataframe __pyx_mstate_global->__pyx_n_s_dataframe
 #define __pyx_n_s_dataframe_path __pyx_mstate_global->__pyx_n_s_dataframe_path
 #define __pyx_n_s_date __pyx_mstate_global->__pyx_n_s_date
@@ -3304,6 +3317,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_disable __pyx_mstate_global->__pyx_kp_u_disable
 #define __pyx_kp_u_enable __pyx_mstate_global->__pyx_kp_u_enable
 #define __pyx_n_s_expand_dims __pyx_mstate_global->__pyx_n_s_expand_dims
+#define __pyx_n_s_forecasting_utils __pyx_mstate_global->__pyx_n_s_forecasting_utils
 #define __pyx_kp_u_gc __pyx_mstate_global->__pyx_kp_u_gc
 #define __pyx_n_s_getstate __pyx_mstate_global->__pyx_n_s_getstate
 #define __pyx_n_s_iloc __pyx_mstate_global->__pyx_n_s_iloc
@@ -3328,7 +3342,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_model __pyx_mstate_global->__pyx_n_s_model
 #define __pyx_n_s_model_name __pyx_mstate_global->__pyx_n_s_model_name
 #define __pyx_n_s_model_path __pyx_mstate_global->__pyx_n_s_model_path
-#define __pyx_kp_s_models __pyx_mstate_global->__pyx_kp_s_models
+#define __pyx_kp_u_models __pyx_mstate_global->__pyx_kp_u_models
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_n_s_new __pyx_mstate_global->__pyx_n_s_new
 #define __pyx_n_s_numpy __pyx_mstate_global->__pyx_n_s_numpy
@@ -3336,8 +3350,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_pandas __pyx_mstate_global->__pyx_n_s_pandas
 #define __pyx_n_s_path __pyx_mstate_global->__pyx_n_s_path
 #define __pyx_n_s_pickle __pyx_mstate_global->__pyx_n_s_pickle
-#define __pyx_kp_s_pickles __pyx_mstate_global->__pyx_kp_s_pickles
-#define __pyx_kp_s_posttrained __pyx_mstate_global->__pyx_kp_s_posttrained
+#define __pyx_kp_u_pickles __pyx_mstate_global->__pyx_kp_u_pickles
+#define __pyx_kp_u_posttrained __pyx_mstate_global->__pyx_kp_u_posttrained
 #define __pyx_kp_u_posttrained_json __pyx_mstate_global->__pyx_kp_u_posttrained_json
 #define __pyx_n_s_predict __pyx_mstate_global->__pyx_n_s_predict
 #define __pyx_n_s_predicted_price __pyx_mstate_global->__pyx_n_s_predicted_price
@@ -3355,6 +3369,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_reduce __pyx_mstate_global->__pyx_n_s_reduce
 #define __pyx_n_s_reduce_cython __pyx_mstate_global->__pyx_n_s_reduce_cython
 #define __pyx_n_s_reduce_ex __pyx_mstate_global->__pyx_n_s_reduce_ex
+#define __pyx_kp_u_resources_algorithms __pyx_mstate_global->__pyx_kp_u_resources_algorithms
 #define __pyx_n_s_return __pyx_mstate_global->__pyx_n_s_return
 #define __pyx_n_s_self __pyx_mstate_global->__pyx_n_s_self
 #define __pyx_n_s_send __pyx_mstate_global->__pyx_n_s_send
@@ -3403,41 +3418,42 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
 /* "utilities.pyx":9
  * 
  * cdef class Utilities:
- *     async def cryptocurrency_prediction_utils(self,             # <<<<<<<<<<<<<<
- *         int days, int sequence_length, str model_name) -> tuple:
- *         cdef str model_path = os.path.join('./models', f'{model_name}.keras')
+ *     async def forecasting_utils(self, int sequence_length,             # <<<<<<<<<<<<<<
+ *         int days, str model_name, str algorithm) -> tuple:
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_9utilities_9Utilities_1cryptocurrency_prediction_utils(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_9utilities_9Utilities_1forecasting_utils(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_9utilities_9Utilities_1cryptocurrency_prediction_utils = {"cryptocurrency_prediction_utils", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9utilities_9Utilities_1cryptocurrency_prediction_utils, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_9utilities_9Utilities_1cryptocurrency_prediction_utils(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_9utilities_9Utilities_1forecasting_utils = {"forecasting_utils", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9utilities_9Utilities_1forecasting_utils, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_9utilities_9Utilities_1forecasting_utils(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
-  int __pyx_v_days;
   int __pyx_v_sequence_length;
+  int __pyx_v_days;
   PyObject *__pyx_v_model_name = 0;
+  PyObject *__pyx_v_algorithm = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[3] = {0,0,0};
+  PyObject* values[4] = {0,0,0,0};
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("cryptocurrency_prediction_utils (wrapper)", 0);
+  __Pyx_RefNannySetupContext("forecasting_utils (wrapper)", 0);
   #if !CYTHON_METH_FASTCALL
   #if CYTHON_ASSUME_SAFE_MACROS
   __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -3447,10 +3463,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_days,&__pyx_n_s_sequence_length,&__pyx_n_s_model_name,0};
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_sequence_length,&__pyx_n_s_days,&__pyx_n_s_model_name,&__pyx_n_s_algorithm,0};
     if (__pyx_kwds) {
       Py_ssize_t kw_args;
       switch (__pyx_nargs) {
+        case  4: values[3] = __Pyx_Arg_FASTCALL(__pyx_args, 3);
+        CYTHON_FALLTHROUGH;
         case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
         CYTHON_FALLTHROUGH;
         case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
@@ -3463,7 +3481,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
       switch (__pyx_nargs) {
         case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_days)) != 0)) {
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_sequence_length)) != 0)) {
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
@@ -3471,13 +3489,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_sequence_length)) != 0)) {
+        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_days)) != 0)) {
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
         else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 9, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("cryptocurrency_prediction_utils", 1, 3, 3, 1); __PYX_ERR(0, 9, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("forecasting_utils", 1, 4, 4, 1); __PYX_ERR(0, 9, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -3487,27 +3505,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         }
         else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 9, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("cryptocurrency_prediction_utils", 1, 3, 3, 2); __PYX_ERR(0, 9, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("forecasting_utils", 1, 4, 4, 2); __PYX_ERR(0, 9, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  3:
+        if (likely((values[3] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_algorithm)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[3]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 9, __pyx_L3_error)
+        else {
+          __Pyx_RaiseArgtupleInvalid("forecasting_utils", 1, 4, 4, 3); __PYX_ERR(0, 9, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "cryptocurrency_prediction_utils") < 0)) __PYX_ERR(0, 9, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "forecasting_utils") < 0)) __PYX_ERR(0, 9, __pyx_L3_error)
       }
-    } else if (unlikely(__pyx_nargs != 3)) {
+    } else if (unlikely(__pyx_nargs != 4)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
       values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+      values[3] = __Pyx_Arg_FASTCALL(__pyx_args, 3);
     }
-    __pyx_v_days = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_days == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
-    __pyx_v_sequence_length = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_sequence_length == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
+    __pyx_v_sequence_length = __Pyx_PyInt_As_int(values[0]); if (unlikely((__pyx_v_sequence_length == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 9, __pyx_L3_error)
+    __pyx_v_days = __Pyx_PyInt_As_int(values[1]); if (unlikely((__pyx_v_days == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 10, __pyx_L3_error)
     __pyx_v_model_name = ((PyObject*)values[2]);
+    __pyx_v_algorithm = ((PyObject*)values[3]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("cryptocurrency_prediction_utils", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 9, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("forecasting_utils", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 9, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -3517,12 +3547,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
     }
   }
-  __Pyx_AddTraceback("utilities.Utilities.cryptocurrency_prediction_utils", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utilities.Utilities.forecasting_utils", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_model_name), (&PyString_Type), 1, "model_name", 1))) __PYX_ERR(0, 10, __pyx_L1_error)
-  __pyx_r = __pyx_pf_9utilities_9Utilities_cryptocurrency_prediction_utils(((struct __pyx_obj_9utilities_Utilities *)__pyx_v_self), __pyx_v_days, __pyx_v_sequence_length, __pyx_v_model_name);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_algorithm), (&PyString_Type), 1, "algorithm", 1))) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_r = __pyx_pf_9utilities_9Utilities_forecasting_utils(((struct __pyx_obj_9utilities_Utilities *)__pyx_v_self), __pyx_v_sequence_length, __pyx_v_days, __pyx_v_model_name, __pyx_v_algorithm);
 
   /* function exit code */
   goto __pyx_L0;
@@ -3539,17 +3570,17 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9utilities_9Utilities_cryptocurrency_prediction_utils(CYTHON_UNUSED struct __pyx_obj_9utilities_Utilities *__pyx_v_self, int __pyx_v_days, int __pyx_v_sequence_length, PyObject *__pyx_v_model_name) {
-  struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *__pyx_cur_scope;
+static PyObject *__pyx_pf_9utilities_9Utilities_forecasting_utils(CYTHON_UNUSED struct __pyx_obj_9utilities_Utilities *__pyx_v_self, int __pyx_v_sequence_length, int __pyx_v_days, PyObject *__pyx_v_model_name, PyObject *__pyx_v_algorithm) {
+  struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *__pyx_cur_scope;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("cryptocurrency_prediction_utils", 0);
-  __pyx_cur_scope = (struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *)__pyx_tp_new_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils(__pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils, __pyx_empty_tuple, NULL);
+  __Pyx_RefNannySetupContext("forecasting_utils", 0);
+  __pyx_cur_scope = (struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *)__pyx_tp_new_9utilities___pyx_scope_struct__forecasting_utils(__pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils, __pyx_empty_tuple, NULL);
   if (unlikely(!__pyx_cur_scope)) {
-    __pyx_cur_scope = ((struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *)Py_None);
+    __pyx_cur_scope = ((struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *)Py_None);
     __Pyx_INCREF(Py_None);
     __PYX_ERR(0, 9, __pyx_L1_error)
   } else {
@@ -3558,13 +3589,16 @@ static PyObject *__pyx_pf_9utilities_9Utilities_cryptocurrency_prediction_utils(
   __pyx_cur_scope->__pyx_v_self = __pyx_v_self;
   __Pyx_INCREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
-  __pyx_cur_scope->__pyx_v_days = __pyx_v_days;
   __pyx_cur_scope->__pyx_v_sequence_length = __pyx_v_sequence_length;
+  __pyx_cur_scope->__pyx_v_days = __pyx_v_days;
   __pyx_cur_scope->__pyx_v_model_name = __pyx_v_model_name;
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_model_name);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_model_name);
+  __pyx_cur_scope->__pyx_v_algorithm = __pyx_v_algorithm;
+  __Pyx_INCREF(__pyx_cur_scope->__pyx_v_algorithm);
+  __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_algorithm);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Coroutine_New((__pyx_coroutine_body_t) __pyx_gb_9utilities_9Utilities_2generator, __pyx_codeobj_, (PyObject *) __pyx_cur_scope, __pyx_n_s_cryptocurrency_prediction_utils, __pyx_n_s_Utilities_cryptocurrency_predict, __pyx_n_s_utilities); if (unlikely(!gen)) __PYX_ERR(0, 9, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Coroutine_New((__pyx_coroutine_body_t) __pyx_gb_9utilities_9Utilities_2generator, __pyx_codeobj_, (PyObject *) __pyx_cur_scope, __pyx_n_s_forecasting_utils, __pyx_n_s_Utilities_forecasting_utils, __pyx_n_s_utilities); if (unlikely(!gen)) __PYX_ERR(0, 9, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -3572,7 +3606,7 @@ static PyObject *__pyx_pf_9utilities_9Utilities_cryptocurrency_prediction_utils(
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_AddTraceback("utilities.Utilities.cryptocurrency_prediction_utils", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("utilities.Utilities.forecasting_utils", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __Pyx_DECREF((PyObject *)__pyx_cur_scope);
   __Pyx_XGIVEREF(__pyx_r);
@@ -3582,27 +3616,29 @@ static PyObject *__pyx_pf_9utilities_9Utilities_cryptocurrency_prediction_utils(
 
 static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value) /* generator body */
 {
-  struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *__pyx_cur_scope = ((struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *)__pyx_generator->closure);
+  struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *__pyx_cur_scope = ((struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *)__pyx_generator->closure);
   PyObject *__pyx_r = NULL;
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_t_5;
+  Py_ssize_t __pyx_t_4;
+  Py_UCS4 __pyx_t_5;
   PyObject *__pyx_t_6 = NULL;
   PyObject *__pyx_t_7 = NULL;
   int __pyx_t_8;
-  int __pyx_t_9;
-  int __pyx_t_10;
-  Py_ssize_t __pyx_t_11;
-  Py_ssize_t __pyx_t_12;
-  PyObject *(*__pyx_t_13)(PyObject *);
-  PyObject *(*__pyx_t_14)(PyObject *);
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  int __pyx_t_11;
+  int __pyx_t_12;
+  int __pyx_t_13;
+  Py_ssize_t __pyx_t_14;
+  PyObject *(*__pyx_t_15)(PyObject *);
+  PyObject *(*__pyx_t_16)(PyObject *);
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("cryptocurrency_prediction_utils", 0);
+  __Pyx_RefNannySetupContext("forecasting_utils", 0);
   switch (__pyx_generator->resume_label) {
     case 0: goto __pyx_L3_first_run;
     default: /* CPython raises the right error here */
@@ -3613,11 +3649,11 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
   if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 9, __pyx_L1_error)
 
   /* "utilities.pyx":11
- *     async def cryptocurrency_prediction_utils(self,
- *         int days, int sequence_length, str model_name) -> tuple:
- *         cdef str model_path = os.path.join('./models', f'{model_name}.keras')             # <<<<<<<<<<<<<<
+ *     async def forecasting_utils(self, int sequence_length,
+ *         int days, str model_name, str algorithm) -> tuple:
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',             # <<<<<<<<<<<<<<
+ *             f'{model_name}.keras')
  *         model = load_model(model_path)
- * 
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3627,13 +3663,43 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_join); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_model_name, __pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_3, __pyx_kp_u_keras); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 11, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_4 = 0;
+  __pyx_t_5 = 127;
+  __Pyx_INCREF(__pyx_kp_u_resources_algorithms);
+  __pyx_t_4 += 23;
+  __Pyx_GIVEREF(__pyx_kp_u_resources_algorithms);
+  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_kp_u_resources_algorithms);
+  __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_algorithm, __pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_5 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_6) > __pyx_t_5) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_6) : __pyx_t_5;
+  __pyx_t_4 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_6);
+  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_6);
+  __pyx_t_6 = 0;
+  __Pyx_INCREF(__pyx_kp_u_models);
+  __pyx_t_4 += 7;
+  __Pyx_GIVEREF(__pyx_kp_u_models);
+  PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_kp_u_models);
+  __pyx_t_6 = __Pyx_PyUnicode_Join(__pyx_t_3, 3, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 11, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "utilities.pyx":12
+ *         int days, str model_name, str algorithm) -> tuple:
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
+ *             f'{model_name}.keras')             # <<<<<<<<<<<<<<
+ *         model = load_model(model_path)
+ * 
+ */
+  __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_model_name, __pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_7 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_3, __pyx_kp_u_keras); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_2))) {
     __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
@@ -3642,52 +3708,61 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_5 = 1;
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_kp_s_models, __pyx_t_4};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
+    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_6, __pyx_t_7};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 2+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 11, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
+
+  /* "utilities.pyx":11
+ *     async def forecasting_utils(self, int sequence_length,
+ *         int days, str model_name, str algorithm) -> tuple:
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',             # <<<<<<<<<<<<<<
+ *             f'{model_name}.keras')
+ *         model = load_model(model_path)
+ */
   if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_1))) __PYX_ERR(0, 11, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_model_path = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "utilities.pyx":12
- *         int days, int sequence_length, str model_name) -> tuple:
- *         cdef str model_path = os.path.join('./models', f'{model_name}.keras')
+  /* "utilities.pyx":13
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
+ *             f'{model_name}.keras')
  *         model = load_model(model_path)             # <<<<<<<<<<<<<<
  * 
- *         cdef str dataframe_path = os.path.join('./posttrained', f'{model_name}-posttrained.json')
+ *         cdef str dataframe_path = os.path.join(f'./resources/algorithms/{algorithm}/posttrained',
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_load_model); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_load_model); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_7 = NULL;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
+    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_7)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_5 = 1;
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_cur_scope->__pyx_v_model_path};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+    PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_cur_scope->__pyx_v_model_path};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 13, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
@@ -3695,65 +3770,104 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
   __pyx_cur_scope->__pyx_v_model = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utilities.pyx":14
+  /* "utilities.pyx":15
  *         model = load_model(model_path)
  * 
- *         cdef str dataframe_path = os.path.join('./posttrained', f'{model_name}-posttrained.json')             # <<<<<<<<<<<<<<
+ *         cdef str dataframe_path = os.path.join(f'./resources/algorithms/{algorithm}/posttrained',             # <<<<<<<<<<<<<<
+ *             f'{model_name}-posttrained.json')
+ *         dataframe = read_json(dataframe_path)
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_join); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_4 = 0;
+  __pyx_t_5 = 127;
+  __Pyx_INCREF(__pyx_kp_u_resources_algorithms);
+  __pyx_t_4 += 23;
+  __Pyx_GIVEREF(__pyx_kp_u_resources_algorithms);
+  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_kp_u_resources_algorithms);
+  __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_algorithm, __pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_5 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_6) > __pyx_t_5) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_6) : __pyx_t_5;
+  __pyx_t_4 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_6);
+  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_6);
+  __pyx_t_6 = 0;
+  __Pyx_INCREF(__pyx_kp_u_posttrained);
+  __pyx_t_4 += 12;
+  __Pyx_GIVEREF(__pyx_kp_u_posttrained);
+  PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_kp_u_posttrained);
+  __pyx_t_6 = __Pyx_PyUnicode_Join(__pyx_t_7, 3, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "utilities.pyx":16
+ * 
+ *         cdef str dataframe_path = os.path.join(f'./resources/algorithms/{algorithm}/posttrained',
+ *             f'{model_name}-posttrained.json')             # <<<<<<<<<<<<<<
  *         dataframe = read_json(dataframe_path)
  *         dataframe.set_index('Date', inplace=True)
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_join); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_model_name, __pyx_empty_unicode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 14, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_4, __pyx_kp_u_posttrained_json); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 14, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_model_name, __pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_3 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_7, __pyx_kp_u_posttrained_json); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = NULL;
-  __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = NULL;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
+    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_7)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_5 = 1;
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_kp_s_posttrained, __pyx_t_3};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    PyObject *__pyx_callargs[3] = {__pyx_t_7, __pyx_t_6, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 2+__pyx_t_8);
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_1))) __PYX_ERR(0, 14, __pyx_L1_error)
+
+  /* "utilities.pyx":15
+ *         model = load_model(model_path)
+ * 
+ *         cdef str dataframe_path = os.path.join(f'./resources/algorithms/{algorithm}/posttrained',             # <<<<<<<<<<<<<<
+ *             f'{model_name}-posttrained.json')
+ *         dataframe = read_json(dataframe_path)
+ */
+  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_1))) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_dataframe_path = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "utilities.pyx":15
- * 
- *         cdef str dataframe_path = os.path.join('./posttrained', f'{model_name}-posttrained.json')
+  /* "utilities.pyx":17
+ *         cdef str dataframe_path = os.path.join(f'./resources/algorithms/{algorithm}/posttrained',
+ *             f'{model_name}-posttrained.json')
  *         dataframe = read_json(dataframe_path)             # <<<<<<<<<<<<<<
  *         dataframe.set_index('Date', inplace=True)
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_read_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 15, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_read_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_2))) {
     __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
@@ -3762,15 +3876,15 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_5 = 1;
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_cur_scope->__pyx_v_dataframe_path};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 15, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
@@ -3778,89 +3892,120 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
   __pyx_cur_scope->__pyx_v_dataframe = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "utilities.pyx":16
- *         cdef str dataframe_path = os.path.join('./posttrained', f'{model_name}-posttrained.json')
+  /* "utilities.pyx":18
+ *             f'{model_name}-posttrained.json')
  *         dataframe = read_json(dataframe_path)
  *         dataframe.set_index('Date', inplace=True)             # <<<<<<<<<<<<<<
  * 
- *         minmax_scaler = load(os.path.join('./pickles', f'{model_name}_minmax_scaler.pickle'))
+ *         minmax_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_dataframe, __pyx_n_s_set_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_dataframe, __pyx_n_s_set_index); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_inplace, Py_True) < 0) __PYX_ERR(0, 16, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 16, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_inplace, Py_True) < 0) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_tuple__2, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "utilities.pyx":18
+  /* "utilities.pyx":20
  *         dataframe.set_index('Date', inplace=True)
  * 
- *         minmax_scaler = load(os.path.join('./pickles', f'{model_name}_minmax_scaler.pickle'))             # <<<<<<<<<<<<<<
- *         standard_scaler = load(os.path.join('./pickles', f'{model_name}_standard_scaler.pickle'))
- * 
+ *         minmax_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',             # <<<<<<<<<<<<<<
+ *             f'{model_name}_minmax_scaler.pickle'))
+ *         standard_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_load); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_load); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 18, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_os); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_join); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 18, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_model_name, __pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 18, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_6, __pyx_kp_u_minmax_scaler_pickle); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_path); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_join); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = PyTuple_New(3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_4 = 0;
+  __pyx_t_5 = 127;
+  __Pyx_INCREF(__pyx_kp_u_resources_algorithms);
+  __pyx_t_4 += 23;
+  __Pyx_GIVEREF(__pyx_kp_u_resources_algorithms);
+  PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_kp_u_resources_algorithms);
+  __pyx_t_9 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_algorithm, __pyx_empty_unicode); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
+  __pyx_t_5 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_9) > __pyx_t_5) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_9) : __pyx_t_5;
+  __pyx_t_4 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_9);
+  __Pyx_GIVEREF(__pyx_t_9);
+  PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_9);
+  __pyx_t_9 = 0;
+  __Pyx_INCREF(__pyx_kp_u_pickles);
+  __pyx_t_4 += 8;
+  __Pyx_GIVEREF(__pyx_kp_u_pickles);
+  PyTuple_SET_ITEM(__pyx_t_7, 2, __pyx_kp_u_pickles);
+  __pyx_t_9 = __Pyx_PyUnicode_Join(__pyx_t_7, 3, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+
+  /* "utilities.pyx":21
+ * 
+ *         minmax_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
+ *             f'{model_name}_minmax_scaler.pickle'))             # <<<<<<<<<<<<<<
+ *         standard_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
+ *             f'{model_name}_standard_scaler.pickle'))
+ */
+  __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_model_name, __pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_7);
+  __pyx_t_10 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_7, __pyx_kp_u_minmax_scaler_pickle); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+  __pyx_t_7 = NULL;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_6)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_6);
+  if (likely(PyMethod_Check(__pyx_t_6))) {
+    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_6);
+    if (likely(__pyx_t_7)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+      __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-      __pyx_t_5 = 1;
+      __Pyx_DECREF_SET(__pyx_t_6, function);
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_6, __pyx_kp_s_pickles, __pyx_t_7};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
-    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+    PyObject *__pyx_callargs[3] = {__pyx_t_7, __pyx_t_9, __pyx_t_10};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 2+__pyx_t_8);
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
-  __pyx_t_4 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_6 = NULL;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
+    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_6)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_6);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_5 = 1;
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_t_1};
-    __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_t_1};
+    __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
+    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 18, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 20, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
@@ -3868,71 +4013,102 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
   __pyx_cur_scope->__pyx_v_minmax_scaler = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "utilities.pyx":19
+  /* "utilities.pyx":22
+ *         minmax_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
+ *             f'{model_name}_minmax_scaler.pickle'))
+ *         standard_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',             # <<<<<<<<<<<<<<
+ *             f'{model_name}_standard_scaler.pickle'))
  * 
- *         minmax_scaler = load(os.path.join('./pickles', f'{model_name}_minmax_scaler.pickle'))
- *         standard_scaler = load(os.path.join('./pickles', f'{model_name}_standard_scaler.pickle'))             # <<<<<<<<<<<<<<
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_load); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_os); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_path); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_join); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+  __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  __pyx_t_4 = 0;
+  __pyx_t_5 = 127;
+  __Pyx_INCREF(__pyx_kp_u_resources_algorithms);
+  __pyx_t_4 += 23;
+  __Pyx_GIVEREF(__pyx_kp_u_resources_algorithms);
+  PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_kp_u_resources_algorithms);
+  __pyx_t_9 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_algorithm, __pyx_empty_unicode); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
+  __pyx_t_5 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_9) > __pyx_t_5) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_9) : __pyx_t_5;
+  __pyx_t_4 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_9);
+  __Pyx_GIVEREF(__pyx_t_9);
+  PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_t_9);
+  __pyx_t_9 = 0;
+  __Pyx_INCREF(__pyx_kp_u_pickles);
+  __pyx_t_4 += 8;
+  __Pyx_GIVEREF(__pyx_kp_u_pickles);
+  PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_kp_u_pickles);
+  __pyx_t_9 = __Pyx_PyUnicode_Join(__pyx_t_10, 3, __pyx_t_4, __pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_9);
+  __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+
+  /* "utilities.pyx":23
+ *             f'{model_name}_minmax_scaler.pickle'))
+ *         standard_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
+ *             f'{model_name}_standard_scaler.pickle'))             # <<<<<<<<<<<<<<
  * 
  *         # Prediction
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_load); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_model_name, __pyx_empty_unicode); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  __pyx_t_7 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_10, __pyx_kp_u_standard_scaler_pickle); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 23, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_join); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_cur_scope->__pyx_v_model_name, __pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_6 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_7, __pyx_kp_u_standard_scaler_pickle); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 19, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = NULL;
-  __pyx_t_5 = 0;
+  __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+  __pyx_t_10 = NULL;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_4);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-      __Pyx_INCREF(__pyx_t_7);
+  if (likely(PyMethod_Check(__pyx_t_6))) {
+    __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_6);
+    if (likely(__pyx_t_10)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+      __Pyx_INCREF(__pyx_t_10);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-      __pyx_t_5 = 1;
+      __Pyx_DECREF_SET(__pyx_t_6, function);
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_7, __pyx_kp_s_pickles, __pyx_t_6};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
+    PyObject *__pyx_callargs[3] = {__pyx_t_10, __pyx_t_9, __pyx_t_7};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 2+__pyx_t_8);
+    __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
-  __pyx_t_4 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_6 = NULL;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_4)) {
+    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_6)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_4);
+      __Pyx_INCREF(__pyx_t_6);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_5 = 1;
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_t_1};
-    __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_t_1};
+    __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
+    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
@@ -3940,78 +4116,78 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
   __pyx_cur_scope->__pyx_v_standard_scaler = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "utilities.pyx":22
+  /* "utilities.pyx":26
  * 
  *         # Prediction
  *         lst_seq = dataframe[-sequence_length:].values             # <<<<<<<<<<<<<<
  *         lst_seq = expand_dims(lst_seq, axis=0)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_cur_scope->__pyx_v_dataframe, (-__pyx_cur_scope->__pyx_v_sequence_length), 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetSlice(__pyx_cur_scope->__pyx_v_dataframe, (-__pyx_cur_scope->__pyx_v_sequence_length), 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_cur_scope->__pyx_v_lst_seq = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "utilities.pyx":23
+  /* "utilities.pyx":27
  *         # Prediction
  *         lst_seq = dataframe[-sequence_length:].values
  *         lst_seq = expand_dims(lst_seq, axis=0)             # <<<<<<<<<<<<<<
  * 
  *         cdef dict predicted_prices = {}
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_expand_dims); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_expand_dims); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 23, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_lst_seq);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_lst_seq);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_cur_scope->__pyx_v_lst_seq)) __PYX_ERR(0, 23, __pyx_L1_error);
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_cur_scope->__pyx_v_lst_seq)) __PYX_ERR(0, 27, __pyx_L1_error);
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_axis, __pyx_int_0) < 0) __PYX_ERR(0, 23, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 23, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_axis, __pyx_int_0) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_GOTREF(__pyx_cur_scope->__pyx_v_lst_seq);
-  __Pyx_DECREF_SET(__pyx_cur_scope->__pyx_v_lst_seq, __pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_t_4 = 0;
+  __Pyx_DECREF_SET(__pyx_cur_scope->__pyx_v_lst_seq, __pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_6);
+  __pyx_t_6 = 0;
 
-  /* "utilities.pyx":25
+  /* "utilities.pyx":29
  *         lst_seq = expand_dims(lst_seq, axis=0)
  * 
  *         cdef dict predicted_prices = {}             # <<<<<<<<<<<<<<
  *         last_date = to_datetime(dataframe.index[-1])
  * 
  */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 25, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_cur_scope->__pyx_v_predicted_prices = ((PyObject*)__pyx_t_4);
-  __pyx_t_4 = 0;
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
+  __Pyx_GIVEREF(__pyx_t_6);
+  __pyx_cur_scope->__pyx_v_predicted_prices = ((PyObject*)__pyx_t_6);
+  __pyx_t_6 = 0;
 
-  /* "utilities.pyx":26
+  /* "utilities.pyx":30
  * 
  *         cdef dict predicted_prices = {}
  *         last_date = to_datetime(dataframe.index[-1])             # <<<<<<<<<<<<<<
  * 
  *         for _ in range(days):
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_to_datetime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_to_datetime); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_dataframe, __pyx_n_s_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_dataframe, __pyx_n_s_index); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, -1L, long, 1, __Pyx_PyInt_From_long, 0, 1, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_1))) {
     __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
@@ -4020,46 +4196,46 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_1, function);
-      __pyx_t_5 = 1;
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_2};
-    __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+    __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 30, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_cur_scope->__pyx_v_last_date = __pyx_t_4;
-  __pyx_t_4 = 0;
+  __Pyx_GIVEREF(__pyx_t_6);
+  __pyx_cur_scope->__pyx_v_last_date = __pyx_t_6;
+  __pyx_t_6 = 0;
 
-  /* "utilities.pyx":28
+  /* "utilities.pyx":32
  *         last_date = to_datetime(dataframe.index[-1])
  * 
  *         for _ in range(days):             # <<<<<<<<<<<<<<
  *             predicted_price = model.predict(lst_seq)
  *             last_date = last_date + Timedelta(days=1)
  */
-  __pyx_t_5 = __pyx_cur_scope->__pyx_v_days;
-  __pyx_t_8 = __pyx_t_5;
-  for (__pyx_t_9 = 0; __pyx_t_9 < __pyx_t_8; __pyx_t_9+=1) {
-    __pyx_cur_scope->__pyx_v__ = __pyx_t_9;
+  __pyx_t_8 = __pyx_cur_scope->__pyx_v_days;
+  __pyx_t_11 = __pyx_t_8;
+  for (__pyx_t_12 = 0; __pyx_t_12 < __pyx_t_11; __pyx_t_12+=1) {
+    __pyx_cur_scope->__pyx_v__ = __pyx_t_12;
 
-    /* "utilities.pyx":29
+    /* "utilities.pyx":33
  * 
  *         for _ in range(days):
  *             predicted_price = model.predict(lst_seq)             # <<<<<<<<<<<<<<
  *             last_date = last_date + Timedelta(days=1)
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_model, __pyx_n_s_predict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_model, __pyx_n_s_predict); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = NULL;
-    __pyx_t_10 = 0;
+    __pyx_t_13 = 0;
     #if CYTHON_UNPACK_METHODS
     if (likely(PyMethod_Check(__pyx_t_1))) {
       __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
@@ -4068,40 +4244,40 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
         __Pyx_INCREF(__pyx_t_2);
         __Pyx_INCREF(function);
         __Pyx_DECREF_SET(__pyx_t_1, function);
-        __pyx_t_10 = 1;
+        __pyx_t_13 = 1;
       }
     }
     #endif
     {
       PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_cur_scope->__pyx_v_lst_seq};
-      __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_10, 1+__pyx_t_10);
+      __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_13, 1+__pyx_t_13);
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 29, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
     __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_predicted_price);
-    __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_predicted_price, __pyx_t_4);
-    __Pyx_GIVEREF(__pyx_t_4);
-    __pyx_t_4 = 0;
+    __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_predicted_price, __pyx_t_6);
+    __Pyx_GIVEREF(__pyx_t_6);
+    __pyx_t_6 = 0;
 
-    /* "utilities.pyx":30
+    /* "utilities.pyx":34
  *         for _ in range(days):
  *             predicted_price = model.predict(lst_seq)
  *             last_date = last_date + Timedelta(days=1)             # <<<<<<<<<<<<<<
  * 
  *             predicted_prices[last_date] = minmax_scaler.inverse_transform(predicted_price)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 30, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_Timedelta); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_days, __pyx_int_1) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_4, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_days, __pyx_int_1) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_empty_tuple, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Add(__pyx_cur_scope->__pyx_v_last_date, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Add(__pyx_cur_scope->__pyx_v_last_date, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_GOTREF(__pyx_cur_scope->__pyx_v_last_date);
@@ -4109,53 +4285,53 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
     __Pyx_GIVEREF(__pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "utilities.pyx":32
+    /* "utilities.pyx":36
  *             last_date = last_date + Timedelta(days=1)
  * 
  *             predicted_prices[last_date] = minmax_scaler.inverse_transform(predicted_price)             # <<<<<<<<<<<<<<
  *             predicted_prices[last_date] = standard_scaler.inverse_transform(predicted_prices[last_date])
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_minmax_scaler, __pyx_n_s_inverse_transform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 32, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_minmax_scaler, __pyx_n_s_inverse_transform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = NULL;
-    __pyx_t_10 = 0;
+    __pyx_t_6 = NULL;
+    __pyx_t_13 = 0;
     #if CYTHON_UNPACK_METHODS
     if (likely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_4)) {
+      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
+      if (likely(__pyx_t_6)) {
         PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_4);
+        __Pyx_INCREF(__pyx_t_6);
         __Pyx_INCREF(function);
         __Pyx_DECREF_SET(__pyx_t_2, function);
-        __pyx_t_10 = 1;
+        __pyx_t_13 = 1;
       }
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_cur_scope->__pyx_v_predicted_price};
-      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_10, 1+__pyx_t_10);
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+      PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_cur_scope->__pyx_v_predicted_price};
+      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_13, 1+__pyx_t_13);
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
-    if (unlikely((PyDict_SetItem(__pyx_cur_scope->__pyx_v_predicted_prices, __pyx_cur_scope->__pyx_v_last_date, __pyx_t_1) < 0))) __PYX_ERR(0, 32, __pyx_L1_error)
+    if (unlikely((PyDict_SetItem(__pyx_cur_scope->__pyx_v_predicted_prices, __pyx_cur_scope->__pyx_v_last_date, __pyx_t_1) < 0))) __PYX_ERR(0, 36, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "utilities.pyx":33
+    /* "utilities.pyx":37
  * 
  *             predicted_prices[last_date] = minmax_scaler.inverse_transform(predicted_price)
  *             predicted_prices[last_date] = standard_scaler.inverse_transform(predicted_prices[last_date])             # <<<<<<<<<<<<<<
  * 
  *             lst_seq = append(lst_seq[:, 1:, :], [predicted_price], axis=1)
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_standard_scaler, __pyx_n_s_inverse_transform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_standard_scaler, __pyx_n_s_inverse_transform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_predicted_prices, __pyx_cur_scope->__pyx_v_last_date); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_6 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_predicted_prices, __pyx_cur_scope->__pyx_v_last_date); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_3 = NULL;
-    __pyx_t_10 = 0;
+    __pyx_t_13 = 0;
     #if CYTHON_UNPACK_METHODS
     if (likely(PyMethod_Check(__pyx_t_2))) {
       __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
@@ -4164,61 +4340,61 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
         __Pyx_INCREF(__pyx_t_3);
         __Pyx_INCREF(function);
         __Pyx_DECREF_SET(__pyx_t_2, function);
-        __pyx_t_10 = 1;
+        __pyx_t_13 = 1;
       }
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_4};
-      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_10, 1+__pyx_t_10);
+      PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_6};
+      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_13, 1+__pyx_t_13);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
-    if (unlikely((PyDict_SetItem(__pyx_cur_scope->__pyx_v_predicted_prices, __pyx_cur_scope->__pyx_v_last_date, __pyx_t_1) < 0))) __PYX_ERR(0, 33, __pyx_L1_error)
+    if (unlikely((PyDict_SetItem(__pyx_cur_scope->__pyx_v_predicted_prices, __pyx_cur_scope->__pyx_v_last_date, __pyx_t_1) < 0))) __PYX_ERR(0, 37, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "utilities.pyx":35
+    /* "utilities.pyx":39
  *             predicted_prices[last_date] = standard_scaler.inverse_transform(predicted_prices[last_date])
  * 
  *             lst_seq = append(lst_seq[:, 1:, :], [predicted_price], axis=1)             # <<<<<<<<<<<<<<
  * 
  *         predictions = [
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_append); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_append); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_cur_scope->__pyx_v_lst_seq, __pyx_tuple__5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_cur_scope->__pyx_v_lst_seq, __pyx_tuple__5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyList_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_6 = PyList_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_predicted_price);
     __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_predicted_price);
-    if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_cur_scope->__pyx_v_predicted_price)) __PYX_ERR(0, 35, __pyx_L1_error);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+    if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_cur_scope->__pyx_v_predicted_price)) __PYX_ERR(0, 39, __pyx_L1_error);
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_2);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error);
-    __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error);
+    __Pyx_GIVEREF(__pyx_t_6);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error);
     __pyx_t_2 = 0;
-    __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
-    if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_axis, __pyx_int_1) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_axis, __pyx_int_1) < 0) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_GOTREF(__pyx_cur_scope->__pyx_v_lst_seq);
     __Pyx_DECREF_SET(__pyx_cur_scope->__pyx_v_lst_seq, __pyx_t_2);
     __Pyx_GIVEREF(__pyx_t_2);
     __pyx_t_2 = 0;
   }
 
-  /* "utilities.pyx":37
+  /* "utilities.pyx":41
  *             lst_seq = append(lst_seq[:, 1:, :], [predicted_price], axis=1)
  * 
  *         predictions = [             # <<<<<<<<<<<<<<
@@ -4226,26 +4402,26 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
  *                 for date, price in predicted_prices.items()
  */
   { /* enter inner scope */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
 
-    /* "utilities.pyx":39
+    /* "utilities.pyx":43
  *         predictions = [
  *             {'date': date.strftime('%Y-%m-%d'), 'price': float(price)} \
  *                 for date, price in predicted_prices.items()             # <<<<<<<<<<<<<<
  *         ]
  * 
  */
-    __pyx_t_11 = 0;
-    __pyx_t_3 = __Pyx_dict_iterator(__pyx_cur_scope->__pyx_v_predicted_prices, 1, __pyx_n_s_items, (&__pyx_t_12), (&__pyx_t_5)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_4 = 0;
+    __pyx_t_3 = __Pyx_dict_iterator(__pyx_cur_scope->__pyx_v_predicted_prices, 1, __pyx_n_s_items, (&__pyx_t_14), (&__pyx_t_8)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_XDECREF(__pyx_t_4);
-    __pyx_t_4 = __pyx_t_3;
+    __Pyx_XDECREF(__pyx_t_6);
+    __pyx_t_6 = __pyx_t_3;
     __pyx_t_3 = 0;
     while (1) {
-      __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_4, __pyx_t_12, &__pyx_t_11, &__pyx_t_3, &__pyx_t_1, NULL, __pyx_t_5);
-      if (unlikely(__pyx_t_8 == 0)) break;
-      if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 39, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_dict_iter_next(__pyx_t_6, __pyx_t_14, &__pyx_t_4, &__pyx_t_3, &__pyx_t_1, NULL, __pyx_t_8);
+      if (unlikely(__pyx_t_11 == 0)) break;
+      if (unlikely(__pyx_t_11 == -1)) __PYX_ERR(0, 43, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XGOTREF(__pyx_cur_scope->__pyx_7genexpr__pyx_v_date);
@@ -4257,74 +4433,74 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
       __Pyx_GIVEREF(__pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "utilities.pyx":38
+      /* "utilities.pyx":42
  * 
  *         predictions = [
  *             {'date': date.strftime('%Y-%m-%d'), 'price': float(price)} \             # <<<<<<<<<<<<<<
  *                 for date, price in predicted_prices.items()
  *         ]
  */
-      __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_7genexpr__pyx_v_date, __pyx_n_s_strftime); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 38, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_7 = NULL;
-      __pyx_t_8 = 0;
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_7genexpr__pyx_v_date, __pyx_n_s_strftime); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 42, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __pyx_t_9 = NULL;
+      __pyx_t_11 = 0;
       #if CYTHON_UNPACK_METHODS
-      if (likely(PyMethod_Check(__pyx_t_6))) {
-        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_6);
-        if (likely(__pyx_t_7)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-          __Pyx_INCREF(__pyx_t_7);
+      if (likely(PyMethod_Check(__pyx_t_7))) {
+        __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_7);
+        if (likely(__pyx_t_9)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
+          __Pyx_INCREF(__pyx_t_9);
           __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_6, function);
-          __pyx_t_8 = 1;
+          __Pyx_DECREF_SET(__pyx_t_7, function);
+          __pyx_t_11 = 1;
         }
       }
       #endif
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_kp_s_Y_m_d};
-        __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
-        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
+        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_kp_s_Y_m_d};
+        __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
+        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
       }
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_date, __pyx_t_3) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_date, __pyx_t_3) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyNumber_Float(__pyx_cur_scope->__pyx_7genexpr__pyx_v_price); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyNumber_Float(__pyx_cur_scope->__pyx_7genexpr__pyx_v_price); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 42, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_price, __pyx_t_3) < 0) __PYX_ERR(0, 38, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_price, __pyx_t_3) < 0) __PYX_ERR(0, 42, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_1))) __PYX_ERR(0, 37, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_1))) __PYX_ERR(0, 41, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   } /* exit inner scope */
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_cur_scope->__pyx_v_predictions = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "utilities.pyx":43
+  /* "utilities.pyx":47
  * 
  *         # Actual
  *         df_date = dataframe.index[-sequence_length:].values             # <<<<<<<<<<<<<<
  *         df_date = [to_datetime(date) for date in df_date]
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_dataframe, __pyx_n_s_index); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_dataframe, __pyx_n_s_index); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_t_2, (-__pyx_cur_scope->__pyx_v_sequence_length), 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 43, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_t_2, (-__pyx_cur_scope->__pyx_v_sequence_length), 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_cur_scope->__pyx_v_df_date = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "utilities.pyx":44
+  /* "utilities.pyx":48
  *         # Actual
  *         df_date = dataframe.index[-sequence_length:].values
  *         df_date = [to_datetime(date) for date in df_date]             # <<<<<<<<<<<<<<
@@ -4332,55 +4508,55 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
  *         dataframe[['Close']] = minmax_scaler.inverse_transform(dataframe)
  */
   { /* enter inner scope */
-    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
+    __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (likely(PyList_CheckExact(__pyx_cur_scope->__pyx_v_df_date)) || PyTuple_CheckExact(__pyx_cur_scope->__pyx_v_df_date)) {
-      __pyx_t_4 = __pyx_cur_scope->__pyx_v_df_date; __Pyx_INCREF(__pyx_t_4);
-      __pyx_t_12 = 0;
-      __pyx_t_13 = NULL;
+      __pyx_t_6 = __pyx_cur_scope->__pyx_v_df_date; __Pyx_INCREF(__pyx_t_6);
+      __pyx_t_14 = 0;
+      __pyx_t_15 = NULL;
     } else {
-      __pyx_t_12 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_cur_scope->__pyx_v_df_date); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 44, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_13 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_4); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 44, __pyx_L1_error)
+      __pyx_t_14 = -1; __pyx_t_6 = PyObject_GetIter(__pyx_cur_scope->__pyx_v_df_date); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 48, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __pyx_t_15 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_6); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 48, __pyx_L1_error)
     }
     for (;;) {
-      if (likely(!__pyx_t_13)) {
-        if (likely(PyList_CheckExact(__pyx_t_4))) {
+      if (likely(!__pyx_t_15)) {
+        if (likely(PyList_CheckExact(__pyx_t_6))) {
           {
-            Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_4);
+            Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_6);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 44, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
             #endif
-            if (__pyx_t_12 >= __pyx_temp) break;
+            if (__pyx_t_14 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_4, __pyx_t_12); __Pyx_INCREF(__pyx_t_1); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 44, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_6, __pyx_t_14); __Pyx_INCREF(__pyx_t_1); __pyx_t_14++; if (unlikely((0 < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
           #else
-          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_4, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_6, __pyx_t_14); __pyx_t_14++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           {
-            Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_4);
+            Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_6);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 44, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
             #endif
-            if (__pyx_t_12 >= __pyx_temp) break;
+            if (__pyx_t_14 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_4, __pyx_t_12); __Pyx_INCREF(__pyx_t_1); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 44, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_6, __pyx_t_14); __Pyx_INCREF(__pyx_t_1); __pyx_t_14++; if (unlikely((0 < 0))) __PYX_ERR(0, 48, __pyx_L1_error)
           #else
-          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_4, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_6, __pyx_t_14); __pyx_t_14++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
       } else {
-        __pyx_t_1 = __pyx_t_13(__pyx_t_4);
+        __pyx_t_1 = __pyx_t_15(__pyx_t_6);
         if (unlikely(!__pyx_t_1)) {
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 44, __pyx_L1_error)
+            else __PYX_ERR(0, 48, __pyx_L1_error)
           }
           break;
         }
@@ -4390,143 +4566,143 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
       __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_8genexpr1__pyx_v_date, __pyx_t_1);
       __Pyx_GIVEREF(__pyx_t_1);
       __pyx_t_1 = 0;
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_to_datetime); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 44, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_to_datetime); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_6 = NULL;
-      __pyx_t_5 = 0;
+      __pyx_t_7 = NULL;
+      __pyx_t_8 = 0;
       #if CYTHON_UNPACK_METHODS
       if (unlikely(PyMethod_Check(__pyx_t_3))) {
-        __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_3);
-        if (likely(__pyx_t_6)) {
+        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_7)) {
           PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-          __Pyx_INCREF(__pyx_t_6);
+          __Pyx_INCREF(__pyx_t_7);
           __Pyx_INCREF(function);
           __Pyx_DECREF_SET(__pyx_t_3, function);
-          __pyx_t_5 = 1;
+          __pyx_t_8 = 1;
         }
       }
       #endif
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_cur_scope->__pyx_8genexpr1__pyx_v_date};
-        __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
-        __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 44, __pyx_L1_error)
+        PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_cur_scope->__pyx_8genexpr1__pyx_v_date};
+        __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
+        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_1))) __PYX_ERR(0, 44, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_2, (PyObject*)__pyx_t_1))) __PYX_ERR(0, 48, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   } /* exit inner scope */
   __Pyx_GOTREF(__pyx_cur_scope->__pyx_v_df_date);
   __Pyx_DECREF_SET(__pyx_cur_scope->__pyx_v_df_date, __pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "utilities.pyx":46
+  /* "utilities.pyx":50
  *         df_date = [to_datetime(date) for date in df_date]
  * 
  *         dataframe[['Close']] = minmax_scaler.inverse_transform(dataframe)             # <<<<<<<<<<<<<<
  *         dataframe[['Close']] = standard_scaler.inverse_transform(dataframe)
  *         df_close = dataframe.iloc[-sequence_length:]['Close'].values
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_minmax_scaler, __pyx_n_s_inverse_transform); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 46, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_minmax_scaler, __pyx_n_s_inverse_transform); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_1 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
+  if (likely(PyMethod_Check(__pyx_t_6))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_6);
     if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
       __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-      __pyx_t_5 = 1;
+      __Pyx_DECREF_SET(__pyx_t_6, function);
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_cur_scope->__pyx_v_dataframe};
-    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
-  __pyx_t_4 = PyList_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 46, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = PyList_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_n_s_Close);
   __Pyx_GIVEREF(__pyx_n_s_Close);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_n_s_Close)) __PYX_ERR(0, 46, __pyx_L1_error);
-  if (unlikely((PyObject_SetItem(__pyx_cur_scope->__pyx_v_dataframe, __pyx_t_4, __pyx_t_2) < 0))) __PYX_ERR(0, 46, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_n_s_Close)) __PYX_ERR(0, 50, __pyx_L1_error);
+  if (unlikely((PyObject_SetItem(__pyx_cur_scope->__pyx_v_dataframe, __pyx_t_6, __pyx_t_2) < 0))) __PYX_ERR(0, 50, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utilities.pyx":47
+  /* "utilities.pyx":51
  * 
  *         dataframe[['Close']] = minmax_scaler.inverse_transform(dataframe)
  *         dataframe[['Close']] = standard_scaler.inverse_transform(dataframe)             # <<<<<<<<<<<<<<
  *         df_close = dataframe.iloc[-sequence_length:]['Close'].values
  * 
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_standard_scaler, __pyx_n_s_inverse_transform); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_standard_scaler, __pyx_n_s_inverse_transform); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_1 = NULL;
-  __pyx_t_5 = 0;
+  __pyx_t_8 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_4))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
+  if (likely(PyMethod_Check(__pyx_t_6))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_6);
     if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
       __Pyx_INCREF(__pyx_t_1);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_4, function);
-      __pyx_t_5 = 1;
+      __Pyx_DECREF_SET(__pyx_t_6, function);
+      __pyx_t_8 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_cur_scope->__pyx_v_dataframe};
-    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   }
-  __pyx_t_4 = PyList_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 47, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = PyList_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_n_s_Close);
   __Pyx_GIVEREF(__pyx_n_s_Close);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_n_s_Close)) __PYX_ERR(0, 47, __pyx_L1_error);
-  if (unlikely((PyObject_SetItem(__pyx_cur_scope->__pyx_v_dataframe, __pyx_t_4, __pyx_t_2) < 0))) __PYX_ERR(0, 47, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_n_s_Close)) __PYX_ERR(0, 51, __pyx_L1_error);
+  if (unlikely((PyObject_SetItem(__pyx_cur_scope->__pyx_v_dataframe, __pyx_t_6, __pyx_t_2) < 0))) __PYX_ERR(0, 51, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "utilities.pyx":48
+  /* "utilities.pyx":52
  *         dataframe[['Close']] = minmax_scaler.inverse_transform(dataframe)
  *         dataframe[['Close']] = standard_scaler.inverse_transform(dataframe)
  *         df_close = dataframe.iloc[-sequence_length:]['Close'].values             # <<<<<<<<<<<<<<
  * 
  *         actuals = [
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_dataframe, __pyx_n_s_iloc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_v_dataframe, __pyx_n_s_iloc); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetSlice(__pyx_t_2, (-__pyx_cur_scope->__pyx_v_sequence_length), 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_t_2, (-__pyx_cur_scope->__pyx_v_sequence_length), 0, NULL, NULL, NULL, 1, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_t_4, __pyx_n_s_Close); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_t_6, __pyx_n_s_Close); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_cur_scope->__pyx_v_df_close = __pyx_t_4;
-  __pyx_t_4 = 0;
+  __Pyx_GIVEREF(__pyx_t_6);
+  __pyx_cur_scope->__pyx_v_df_close = __pyx_t_6;
+  __pyx_t_6 = 0;
 
-  /* "utilities.pyx":50
+  /* "utilities.pyx":54
  *         df_close = dataframe.iloc[-sequence_length:]['Close'].values
  * 
  *         actuals = [             # <<<<<<<<<<<<<<
@@ -4534,75 +4710,75 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
  *                 for date, close in zip(df_date, df_close)
  */
   { /* enter inner scope */
-    __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 50, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 54, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
 
-    /* "utilities.pyx":52
+    /* "utilities.pyx":56
  *         actuals = [
  *             {'date': date.strftime('%Y-%m-%d'), 'price': close} \
  *                 for date, close in zip(df_date, df_close)             # <<<<<<<<<<<<<<
  *         ]
  * 
  */
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_df_date);
     __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_df_date);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_cur_scope->__pyx_v_df_date)) __PYX_ERR(0, 52, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_cur_scope->__pyx_v_df_date)) __PYX_ERR(0, 56, __pyx_L1_error);
     __Pyx_INCREF(__pyx_cur_scope->__pyx_v_df_close);
     __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_df_close);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_cur_scope->__pyx_v_df_close)) __PYX_ERR(0, 52, __pyx_L1_error);
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_cur_scope->__pyx_v_df_close)) __PYX_ERR(0, 56, __pyx_L1_error);
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
       __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2);
-      __pyx_t_12 = 0;
-      __pyx_t_13 = NULL;
+      __pyx_t_14 = 0;
+      __pyx_t_15 = NULL;
     } else {
-      __pyx_t_12 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_14 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_13 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 52, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_2); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 56, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     for (;;) {
-      if (likely(!__pyx_t_13)) {
+      if (likely(!__pyx_t_15)) {
         if (likely(PyList_CheckExact(__pyx_t_2))) {
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 52, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 56, __pyx_L1_error)
             #endif
-            if (__pyx_t_12 >= __pyx_temp) break;
+            if (__pyx_t_14 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_12); __Pyx_INCREF(__pyx_t_1); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 52, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_14); __Pyx_INCREF(__pyx_t_1); __pyx_t_14++; if (unlikely((0 < 0))) __PYX_ERR(0, 56, __pyx_L1_error)
           #else
-          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_14); __pyx_t_14++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_2);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 52, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 56, __pyx_L1_error)
             #endif
-            if (__pyx_t_12 >= __pyx_temp) break;
+            if (__pyx_t_14 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_12); __Pyx_INCREF(__pyx_t_1); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 52, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_14); __Pyx_INCREF(__pyx_t_1); __pyx_t_14++; if (unlikely((0 < 0))) __PYX_ERR(0, 56, __pyx_L1_error)
           #else
-          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_14); __pyx_t_14++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
       } else {
-        __pyx_t_1 = __pyx_t_13(__pyx_t_2);
+        __pyx_t_1 = __pyx_t_15(__pyx_t_2);
         if (unlikely(!__pyx_t_1)) {
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 52, __pyx_L1_error)
+            else __PYX_ERR(0, 56, __pyx_L1_error)
           }
           break;
         }
@@ -4614,44 +4790,44 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 52, __pyx_L1_error)
+          __PYX_ERR(0, 56, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
           __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
-          __pyx_t_6 = PyTuple_GET_ITEM(sequence, 1); 
+          __pyx_t_7 = PyTuple_GET_ITEM(sequence, 1); 
         } else {
           __pyx_t_3 = PyList_GET_ITEM(sequence, 0); 
-          __pyx_t_6 = PyList_GET_ITEM(sequence, 1); 
+          __pyx_t_7 = PyList_GET_ITEM(sequence, 1); 
         }
         __Pyx_INCREF(__pyx_t_3);
-        __Pyx_INCREF(__pyx_t_6);
+        __Pyx_INCREF(__pyx_t_7);
         #else
-        __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
+        __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_6 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 52, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_6);
+        __pyx_t_7 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 56, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
         #endif
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_7 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 52, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_7);
+        __pyx_t_9 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 56, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_14 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_7);
-        index = 0; __pyx_t_3 = __pyx_t_14(__pyx_t_7); if (unlikely(!__pyx_t_3)) goto __pyx_L13_unpacking_failed;
+        __pyx_t_16 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_9);
+        index = 0; __pyx_t_3 = __pyx_t_16(__pyx_t_9); if (unlikely(!__pyx_t_3)) goto __pyx_L13_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_3);
-        index = 1; __pyx_t_6 = __pyx_t_14(__pyx_t_7); if (unlikely(!__pyx_t_6)) goto __pyx_L13_unpacking_failed;
-        __Pyx_GOTREF(__pyx_t_6);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_14(__pyx_t_7), 2) < 0) __PYX_ERR(0, 52, __pyx_L1_error)
-        __pyx_t_14 = NULL;
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+        index = 1; __pyx_t_7 = __pyx_t_16(__pyx_t_9); if (unlikely(!__pyx_t_7)) goto __pyx_L13_unpacking_failed;
+        __Pyx_GOTREF(__pyx_t_7);
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_16(__pyx_t_9), 2) < 0) __PYX_ERR(0, 56, __pyx_L1_error)
+        __pyx_t_16 = NULL;
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         goto __pyx_L14_unpacking_done;
         __pyx_L13_unpacking_failed:;
-        __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __pyx_t_14 = NULL;
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __pyx_t_16 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 52, __pyx_L1_error)
+        __PYX_ERR(0, 56, __pyx_L1_error)
         __pyx_L14_unpacking_done:;
       }
       __Pyx_XGOTREF(__pyx_cur_scope->__pyx_8genexpr2__pyx_v_date);
@@ -4659,50 +4835,50 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
       __Pyx_GIVEREF(__pyx_t_3);
       __pyx_t_3 = 0;
       __Pyx_XGOTREF(__pyx_cur_scope->__pyx_8genexpr2__pyx_v_close);
-      __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_8genexpr2__pyx_v_close, __pyx_t_6);
-      __Pyx_GIVEREF(__pyx_t_6);
-      __pyx_t_6 = 0;
+      __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_8genexpr2__pyx_v_close, __pyx_t_7);
+      __Pyx_GIVEREF(__pyx_t_7);
+      __pyx_t_7 = 0;
 
-      /* "utilities.pyx":51
+      /* "utilities.pyx":55
  * 
  *         actuals = [
  *             {'date': date.strftime('%Y-%m-%d'), 'price': close} \             # <<<<<<<<<<<<<<
  *                 for date, close in zip(df_date, df_close)
  *         ]
  */
-      __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_8genexpr2__pyx_v_date, __pyx_n_s_strftime); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 51, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_cur_scope->__pyx_8genexpr2__pyx_v_date, __pyx_n_s_strftime); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_7 = NULL;
-      __pyx_t_5 = 0;
+      __pyx_t_9 = NULL;
+      __pyx_t_8 = 0;
       #if CYTHON_UNPACK_METHODS
       if (likely(PyMethod_Check(__pyx_t_3))) {
-        __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_3);
-        if (likely(__pyx_t_7)) {
+        __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_3);
+        if (likely(__pyx_t_9)) {
           PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-          __Pyx_INCREF(__pyx_t_7);
+          __Pyx_INCREF(__pyx_t_9);
           __Pyx_INCREF(function);
           __Pyx_DECREF_SET(__pyx_t_3, function);
-          __pyx_t_5 = 1;
+          __pyx_t_8 = 1;
         }
       }
       #endif
       {
-        PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_kp_s_Y_m_d};
-        __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
-        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 51, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_6);
+        PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_kp_s_Y_m_d};
+        __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
+        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 55, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_date, __pyx_t_6) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_price, __pyx_cur_scope->__pyx_8genexpr2__pyx_v_close) < 0) __PYX_ERR(0, 51, __pyx_L1_error)
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_4, (PyObject*)__pyx_t_1))) __PYX_ERR(0, 50, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_date, __pyx_t_7) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_price, __pyx_cur_scope->__pyx_8genexpr2__pyx_v_close) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_6, (PyObject*)__pyx_t_1))) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "utilities.pyx":52
+      /* "utilities.pyx":56
  *         actuals = [
  *             {'date': date.strftime('%Y-%m-%d'), 'price': close} \
  *                 for date, close in zip(df_date, df_close)             # <<<<<<<<<<<<<<
@@ -4712,36 +4888,36 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } /* exit inner scope */
-  __Pyx_GIVEREF(__pyx_t_4);
-  __pyx_cur_scope->__pyx_v_actuals = ((PyObject*)__pyx_t_4);
-  __pyx_t_4 = 0;
+  __Pyx_GIVEREF(__pyx_t_6);
+  __pyx_cur_scope->__pyx_v_actuals = ((PyObject*)__pyx_t_6);
+  __pyx_t_6 = 0;
 
-  /* "utilities.pyx":55
+  /* "utilities.pyx":59
  *         ]
  * 
  *         return actuals, predictions             # <<<<<<<<<<<<<<
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_6);
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_actuals);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_actuals);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_cur_scope->__pyx_v_actuals)) __PYX_ERR(0, 55, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_cur_scope->__pyx_v_actuals)) __PYX_ERR(0, 59, __pyx_L1_error);
   __Pyx_INCREF(__pyx_cur_scope->__pyx_v_predictions);
   __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_predictions);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_cur_scope->__pyx_v_predictions)) __PYX_ERR(0, 55, __pyx_L1_error);
-  __pyx_r = NULL; __Pyx_ReturnWithStopIteration(__pyx_t_4);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_cur_scope->__pyx_v_predictions)) __PYX_ERR(0, 59, __pyx_L1_error);
+  __pyx_r = NULL; __Pyx_ReturnWithStopIteration(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   goto __pyx_L0;
   CYTHON_MAYBE_UNUSED_VAR(__pyx_cur_scope);
 
   /* "utilities.pyx":9
  * 
  * cdef class Utilities:
- *     async def cryptocurrency_prediction_utils(self,             # <<<<<<<<<<<<<<
- *         int days, int sequence_length, str model_name) -> tuple:
- *         cdef str model_path = os.path.join('./models', f'{model_name}.keras')
+ *     async def forecasting_utils(self, int sequence_length,             # <<<<<<<<<<<<<<
+ *         int days, str model_name, str algorithm) -> tuple:
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
  */
 
   /* function exit code */
@@ -4750,10 +4926,11 @@ static PyObject *__pyx_gb_9utilities_9Utilities_2generator(__pyx_CoroutineObject
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("cryptocurrency_prediction_utils", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_AddTraceback("forecasting_utils", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_r); __pyx_r = 0;
   #if !CYTHON_USE_EXC_INFO_STACK
@@ -5619,7 +5796,7 @@ static void __pyx_tp_dealloc_9utilities_Utilities(PyObject *o) {
 }
 
 static PyMethodDef __pyx_methods_9utilities_Utilities[] = {
-  {"cryptocurrency_prediction_utils", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9utilities_9Utilities_1cryptocurrency_prediction_utils, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"forecasting_utils", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9utilities_9Utilities_1forecasting_utils, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9utilities_9Utilities_4__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_9utilities_9Utilities_6__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
@@ -5723,20 +5900,20 @@ static PyTypeObject __pyx_type_9utilities_Utilities = {
 #endif
 
 #if CYTHON_USE_FREELISTS
-static struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *__pyx_freelist_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils[8];
-static int __pyx_freecount_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils = 0;
+static struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *__pyx_freelist_9utilities___pyx_scope_struct__forecasting_utils[8];
+static int __pyx_freecount_9utilities___pyx_scope_struct__forecasting_utils = 0;
 #endif
 
-static PyObject *__pyx_tp_new_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+static PyObject *__pyx_tp_new_9utilities___pyx_scope_struct__forecasting_utils(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
   PyObject *o;
   #if CYTHON_COMPILING_IN_LIMITED_API
   allocfunc alloc_func = (allocfunc)PyType_GetSlot(t, Py_tp_alloc);
   o = alloc_func(t, 0);
   #else
   #if CYTHON_USE_FREELISTS
-  if (likely((int)(__pyx_freecount_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils > 0) & (int)(t->tp_basicsize == sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils)))) {
-    o = (PyObject*)__pyx_freelist_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils[--__pyx_freecount_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils];
-    memset(o, 0, sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils));
+  if (likely((int)(__pyx_freecount_9utilities___pyx_scope_struct__forecasting_utils > 0) & (int)(t->tp_basicsize == sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils)))) {
+    o = (PyObject*)__pyx_freelist_9utilities___pyx_scope_struct__forecasting_utils[--__pyx_freecount_9utilities___pyx_scope_struct__forecasting_utils];
+    memset(o, 0, sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils));
     (void) PyObject_INIT(o, t);
     PyObject_GC_Track(o);
   } else
@@ -5749,17 +5926,18 @@ static PyObject *__pyx_tp_new_9utilities___pyx_scope_struct__cryptocurrency_pred
   return o;
 }
 
-static void __pyx_tp_dealloc_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils(PyObject *o) {
-  struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *p = (struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *)o;
+static void __pyx_tp_dealloc_9utilities___pyx_scope_struct__forecasting_utils(PyObject *o) {
+  struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *p = (struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *)o;
   #if CYTHON_USE_TP_FINALIZE
   if (unlikely((PY_VERSION_HEX >= 0x03080000 || __Pyx_PyType_HasFeature(Py_TYPE(o), Py_TPFLAGS_HAVE_FINALIZE)) && __Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !__Pyx_PyObject_GC_IsFinalized(o)) {
-    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_9utilities___pyx_scope_struct__forecasting_utils) {
       if (PyObject_CallFinalizerFromDealloc(o)) return;
     }
   }
   #endif
   PyObject_GC_UnTrack(o);
   Py_CLEAR(p->__pyx_v_actuals);
+  Py_CLEAR(p->__pyx_v_algorithm);
   Py_CLEAR(p->__pyx_8genexpr2__pyx_v_close);
   Py_CLEAR(p->__pyx_v_dataframe);
   Py_CLEAR(p->__pyx_v_dataframe_path);
@@ -5781,8 +5959,8 @@ static void __pyx_tp_dealloc_9utilities___pyx_scope_struct__cryptocurrency_predi
   Py_CLEAR(p->__pyx_v_self);
   Py_CLEAR(p->__pyx_v_standard_scaler);
   #if CYTHON_USE_FREELISTS
-  if (((int)(__pyx_freecount_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils < 8) & (int)(Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils)))) {
-    __pyx_freelist_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils[__pyx_freecount_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils++] = ((struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *)o);
+  if (((int)(__pyx_freecount_9utilities___pyx_scope_struct__forecasting_utils < 8) & (int)(Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils)))) {
+    __pyx_freelist_9utilities___pyx_scope_struct__forecasting_utils[__pyx_freecount_9utilities___pyx_scope_struct__forecasting_utils++] = ((struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *)o);
   } else
   #endif
   {
@@ -5797,9 +5975,9 @@ static void __pyx_tp_dealloc_9utilities___pyx_scope_struct__cryptocurrency_predi
   }
 }
 
-static int __pyx_tp_traverse_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_9utilities___pyx_scope_struct__forecasting_utils(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *p = (struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils *)o;
+  struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *p = (struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils *)o;
   if (p->__pyx_v_actuals) {
     e = (*v)(p->__pyx_v_actuals, a); if (e) return e;
   }
@@ -5857,27 +6035,27 @@ static int __pyx_tp_traverse_9utilities___pyx_scope_struct__cryptocurrency_predi
   return 0;
 }
 #if CYTHON_USE_TYPE_SPECS
-static PyType_Slot __pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils_slots[] = {
-  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils},
-  {Py_tp_traverse, (void *)__pyx_tp_traverse_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils},
-  {Py_tp_new, (void *)__pyx_tp_new_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils},
+static PyType_Slot __pyx_type_9utilities___pyx_scope_struct__forecasting_utils_slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_9utilities___pyx_scope_struct__forecasting_utils},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_9utilities___pyx_scope_struct__forecasting_utils},
+  {Py_tp_new, (void *)__pyx_tp_new_9utilities___pyx_scope_struct__forecasting_utils},
   {0, 0},
 };
-static PyType_Spec __pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils_spec = {
-  "utilities.__pyx_scope_struct__cryptocurrency_prediction_utils",
-  sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils),
+static PyType_Spec __pyx_type_9utilities___pyx_scope_struct__forecasting_utils_spec = {
+  "utilities.__pyx_scope_struct__forecasting_utils",
+  sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC|Py_TPFLAGS_HAVE_FINALIZE,
-  __pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils_slots,
+  __pyx_type_9utilities___pyx_scope_struct__forecasting_utils_slots,
 };
 #else
 
-static PyTypeObject __pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils = {
+static PyTypeObject __pyx_type_9utilities___pyx_scope_struct__forecasting_utils = {
   PyVarObject_HEAD_INIT(0, 0)
-  "utilities.""__pyx_scope_struct__cryptocurrency_prediction_utils", /*tp_name*/
-  sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils), /*tp_basicsize*/
+  "utilities.""__pyx_scope_struct__forecasting_utils", /*tp_name*/
+  sizeof(struct __pyx_obj_9utilities___pyx_scope_struct__forecasting_utils), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils, /*tp_dealloc*/
+  __pyx_tp_dealloc_9utilities___pyx_scope_struct__forecasting_utils, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -5904,7 +6082,7 @@ static PyTypeObject __pyx_type_9utilities___pyx_scope_struct__cryptocurrency_pre
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC|Py_TPFLAGS_HAVE_FINALIZE, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils, /*tp_traverse*/
+  __pyx_tp_traverse_9utilities___pyx_scope_struct__forecasting_utils, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
@@ -5922,7 +6100,7 @@ static PyTypeObject __pyx_type_9utilities___pyx_scope_struct__cryptocurrency_pre
   #endif
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils, /*tp_new*/
+  __pyx_tp_new_9utilities___pyx_scope_struct__forecasting_utils, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -5978,13 +6156,14 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_Utilities, __pyx_k_Utilities, sizeof(__pyx_k_Utilities), 0, 0, 1, 1},
     {&__pyx_n_s_Utilities___reduce_cython, __pyx_k_Utilities___reduce_cython, sizeof(__pyx_k_Utilities___reduce_cython), 0, 0, 1, 1},
     {&__pyx_n_s_Utilities___setstate_cython, __pyx_k_Utilities___setstate_cython, sizeof(__pyx_k_Utilities___setstate_cython), 0, 0, 1, 1},
-    {&__pyx_n_s_Utilities_cryptocurrency_predict, __pyx_k_Utilities_cryptocurrency_predict, sizeof(__pyx_k_Utilities_cryptocurrency_predict), 0, 0, 1, 1},
+    {&__pyx_n_s_Utilities_forecasting_utils, __pyx_k_Utilities_forecasting_utils, sizeof(__pyx_k_Utilities_forecasting_utils), 0, 0, 1, 1},
     {&__pyx_kp_s_Y_m_d, __pyx_k_Y_m_d, sizeof(__pyx_k_Y_m_d), 0, 0, 1, 0},
     {&__pyx_n_s__17, __pyx_k__17, sizeof(__pyx_k__17), 0, 0, 1, 1},
     {&__pyx_kp_u__7, __pyx_k__7, sizeof(__pyx_k__7), 0, 1, 0, 0},
     {&__pyx_n_s__8, __pyx_k__8, sizeof(__pyx_k__8), 0, 0, 1, 1},
     {&__pyx_n_s__9, __pyx_k__9, sizeof(__pyx_k__9), 0, 0, 1, 1},
     {&__pyx_n_s_actuals, __pyx_k_actuals, sizeof(__pyx_k_actuals), 0, 0, 1, 1},
+    {&__pyx_n_s_algorithm, __pyx_k_algorithm, sizeof(__pyx_k_algorithm), 0, 0, 1, 1},
     {&__pyx_n_s_append, __pyx_k_append, sizeof(__pyx_k_append), 0, 0, 1, 1},
     {&__pyx_n_s_args, __pyx_k_args, sizeof(__pyx_k_args), 0, 0, 1, 1},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
@@ -5992,7 +6171,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_class_getitem, __pyx_k_class_getitem, sizeof(__pyx_k_class_getitem), 0, 0, 1, 1},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
     {&__pyx_n_s_close, __pyx_k_close, sizeof(__pyx_k_close), 0, 0, 1, 1},
-    {&__pyx_n_s_cryptocurrency_prediction_utils, __pyx_k_cryptocurrency_prediction_utils, sizeof(__pyx_k_cryptocurrency_prediction_utils), 0, 0, 1, 1},
     {&__pyx_n_s_dataframe, __pyx_k_dataframe, sizeof(__pyx_k_dataframe), 0, 0, 1, 1},
     {&__pyx_n_s_dataframe_path, __pyx_k_dataframe_path, sizeof(__pyx_k_dataframe_path), 0, 0, 1, 1},
     {&__pyx_n_s_date, __pyx_k_date, sizeof(__pyx_k_date), 0, 0, 1, 1},
@@ -6004,6 +6182,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_disable, __pyx_k_disable, sizeof(__pyx_k_disable), 0, 1, 0, 0},
     {&__pyx_kp_u_enable, __pyx_k_enable, sizeof(__pyx_k_enable), 0, 1, 0, 0},
     {&__pyx_n_s_expand_dims, __pyx_k_expand_dims, sizeof(__pyx_k_expand_dims), 0, 0, 1, 1},
+    {&__pyx_n_s_forecasting_utils, __pyx_k_forecasting_utils, sizeof(__pyx_k_forecasting_utils), 0, 0, 1, 1},
     {&__pyx_kp_u_gc, __pyx_k_gc, sizeof(__pyx_k_gc), 0, 1, 0, 0},
     {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
     {&__pyx_n_s_iloc, __pyx_k_iloc, sizeof(__pyx_k_iloc), 0, 0, 1, 1},
@@ -6028,7 +6207,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_model, __pyx_k_model, sizeof(__pyx_k_model), 0, 0, 1, 1},
     {&__pyx_n_s_model_name, __pyx_k_model_name, sizeof(__pyx_k_model_name), 0, 0, 1, 1},
     {&__pyx_n_s_model_path, __pyx_k_model_path, sizeof(__pyx_k_model_path), 0, 0, 1, 1},
-    {&__pyx_kp_s_models, __pyx_k_models, sizeof(__pyx_k_models), 0, 0, 1, 0},
+    {&__pyx_kp_u_models, __pyx_k_models, sizeof(__pyx_k_models), 0, 1, 0, 0},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
     {&__pyx_n_s_numpy, __pyx_k_numpy, sizeof(__pyx_k_numpy), 0, 0, 1, 1},
@@ -6036,8 +6215,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_pandas, __pyx_k_pandas, sizeof(__pyx_k_pandas), 0, 0, 1, 1},
     {&__pyx_n_s_path, __pyx_k_path, sizeof(__pyx_k_path), 0, 0, 1, 1},
     {&__pyx_n_s_pickle, __pyx_k_pickle, sizeof(__pyx_k_pickle), 0, 0, 1, 1},
-    {&__pyx_kp_s_pickles, __pyx_k_pickles, sizeof(__pyx_k_pickles), 0, 0, 1, 0},
-    {&__pyx_kp_s_posttrained, __pyx_k_posttrained, sizeof(__pyx_k_posttrained), 0, 0, 1, 0},
+    {&__pyx_kp_u_pickles, __pyx_k_pickles, sizeof(__pyx_k_pickles), 0, 1, 0, 0},
+    {&__pyx_kp_u_posttrained, __pyx_k_posttrained, sizeof(__pyx_k_posttrained), 0, 1, 0, 0},
     {&__pyx_kp_u_posttrained_json, __pyx_k_posttrained_json, sizeof(__pyx_k_posttrained_json), 0, 1, 0, 0},
     {&__pyx_n_s_predict, __pyx_k_predict, sizeof(__pyx_k_predict), 0, 0, 1, 1},
     {&__pyx_n_s_predicted_price, __pyx_k_predicted_price, sizeof(__pyx_k_predicted_price), 0, 0, 1, 1},
@@ -6055,6 +6234,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
+    {&__pyx_kp_u_resources_algorithms, __pyx_k_resources_algorithms, sizeof(__pyx_k_resources_algorithms), 0, 1, 0, 0},
     {&__pyx_n_s_return, __pyx_k_return, sizeof(__pyx_k_return), 0, 0, 1, 1},
     {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
     {&__pyx_n_s_send, __pyx_k_send, sizeof(__pyx_k_send), 0, 0, 1, 1},
@@ -6085,8 +6265,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 }
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 28, __pyx_L1_error)
-  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_n_s_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 56, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -6097,31 +6277,31 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "utilities.pyx":16
- *         cdef str dataframe_path = os.path.join('./posttrained', f'{model_name}-posttrained.json')
+  /* "utilities.pyx":18
+ *             f'{model_name}-posttrained.json')
  *         dataframe = read_json(dataframe_path)
  *         dataframe.set_index('Date', inplace=True)             # <<<<<<<<<<<<<<
  * 
- *         minmax_scaler = load(os.path.join('./pickles', f'{model_name}_minmax_scaler.pickle'))
+ *         minmax_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_Date); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 16, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_n_s_Date); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
-  /* "utilities.pyx":35
+  /* "utilities.pyx":39
  *             predicted_prices[last_date] = standard_scaler.inverse_transform(predicted_prices[last_date])
  * 
  *             lst_seq = append(lst_seq[:, 1:, :], [predicted_price], axis=1)             # <<<<<<<<<<<<<<
  * 
  *         predictions = [
  */
-  __pyx_slice__3 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_slice__3 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__3)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__3);
   __Pyx_GIVEREF(__pyx_slice__3);
-  __pyx_slice__4 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_slice__4 = PySlice_New(__pyx_int_1, Py_None, Py_None); if (unlikely(!__pyx_slice__4)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__4);
   __Pyx_GIVEREF(__pyx_slice__4);
-  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_slice__3, __pyx_slice__4, __pyx_slice__3); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_slice__3, __pyx_slice__4, __pyx_slice__3); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
@@ -6139,14 +6319,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "utilities.pyx":9
  * 
  * cdef class Utilities:
- *     async def cryptocurrency_prediction_utils(self,             # <<<<<<<<<<<<<<
- *         int days, int sequence_length, str model_name) -> tuple:
- *         cdef str model_path = os.path.join('./models', f'{model_name}.keras')
+ *     async def forecasting_utils(self, int sequence_length,             # <<<<<<<<<<<<<<
+ *         int days, str model_name, str algorithm) -> tuple:
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
  */
-  __pyx_tuple__10 = PyTuple_Pack(24, __pyx_n_s_self, __pyx_n_s_days, __pyx_n_s_sequence_length, __pyx_n_s_model_name, __pyx_n_s_model_path, __pyx_n_s_model, __pyx_n_s_dataframe_path, __pyx_n_s_dataframe, __pyx_n_s_minmax_scaler, __pyx_n_s_standard_scaler, __pyx_n_s_lst_seq, __pyx_n_s_predicted_prices, __pyx_n_s_last_date, __pyx_n_s__9, __pyx_n_s_predicted_price, __pyx_n_s_predictions, __pyx_n_s_df_date, __pyx_n_s_df_close, __pyx_n_s_actuals, __pyx_n_s_date, __pyx_n_s_price, __pyx_n_s_date, __pyx_n_s_date, __pyx_n_s_close); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(25, __pyx_n_s_self, __pyx_n_s_sequence_length, __pyx_n_s_days, __pyx_n_s_model_name, __pyx_n_s_algorithm, __pyx_n_s_model_path, __pyx_n_s_model, __pyx_n_s_dataframe_path, __pyx_n_s_dataframe, __pyx_n_s_minmax_scaler, __pyx_n_s_standard_scaler, __pyx_n_s_lst_seq, __pyx_n_s_predicted_prices, __pyx_n_s_last_date, __pyx_n_s__9, __pyx_n_s_predicted_price, __pyx_n_s_predictions, __pyx_n_s_df_date, __pyx_n_s_df_close, __pyx_n_s_actuals, __pyx_n_s_date, __pyx_n_s_price, __pyx_n_s_date, __pyx_n_s_date, __pyx_n_s_close); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
-  __pyx_codeobj_ = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 24, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_COROUTINE, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_utilities_pyx, __pyx_n_s_cryptocurrency_prediction_utils, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj_)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_codeobj_ = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 25, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_COROUTINE, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__10, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_utilities_pyx, __pyx_n_s_forecasting_utils, 9, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj_)) __PYX_ERR(0, 9, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -6267,22 +6447,22 @@ static int __Pyx_modinit_type_init_code(void) {
   if (__Pyx_setup_reduce((PyObject *) __pyx_ptype_9utilities_Utilities) < 0) __PYX_ERR(0, 8, __pyx_L1_error)
   #endif
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils_spec, NULL); if (unlikely(!__pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils)) __PYX_ERR(0, 9, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils_spec, __pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_9utilities___pyx_scope_struct__forecasting_utils_spec, NULL); if (unlikely(!__pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils)) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_9utilities___pyx_scope_struct__forecasting_utils_spec, __pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   #else
-  __pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils = &__pyx_type_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils;
+  __pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils = &__pyx_type_9utilities___pyx_scope_struct__forecasting_utils;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   #endif
   #if PY_MAJOR_VERSION < 3
-  __pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils->tp_print = 0;
+  __pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils->tp_print = 0;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
-  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils->tp_dictoffset && __pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils->tp_getattro == PyObject_GenericGetAttr)) {
-    __pyx_ptype_9utilities___pyx_scope_struct__cryptocurrency_prediction_utils->tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils->tp_dictoffset && __pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils->tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_ptype_9utilities___pyx_scope_struct__forecasting_utils->tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
   }
   #endif
   __Pyx_RefNannyFinishContext();
@@ -6712,18 +6892,18 @@ if (!__Pyx_RefNanny) {
   /* "utilities.pyx":9
  * 
  * cdef class Utilities:
- *     async def cryptocurrency_prediction_utils(self,             # <<<<<<<<<<<<<<
- *         int days, int sequence_length, str model_name) -> tuple:
- *         cdef str model_path = os.path.join('./models', f'{model_name}.keras')
+ *     async def forecasting_utils(self, int sequence_length,             # <<<<<<<<<<<<<<
+ *         int days, str model_name, str algorithm) -> tuple:
+ *         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_s_tuple) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9utilities_9Utilities_1cryptocurrency_prediction_utils, __Pyx_CYFUNCTION_CCLASS | __Pyx_CYFUNCTION_COROUTINE, __pyx_n_s_Utilities_cryptocurrency_predict, NULL, __pyx_n_s_utilities, __pyx_d, ((PyObject *)__pyx_codeobj_)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9utilities_9Utilities_1forecasting_utils, __Pyx_CYFUNCTION_CCLASS | __Pyx_CYFUNCTION_COROUTINE, __pyx_n_s_Utilities_forecasting_utils, NULL, __pyx_n_s_utilities, __pyx_d, ((PyObject *)__pyx_codeobj_)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_3, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9utilities_Utilities, __pyx_n_s_cryptocurrency_prediction_utils, __pyx_t_3) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_9utilities_Utilities, __pyx_n_s_forecasting_utils, __pyx_t_3) < 0) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_9utilities_Utilities);
 
@@ -7513,6 +7693,75 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
     PyErr_Clear();
 #endif
     return __Pyx_GetBuiltinName(name);
+}
+
+/* JoinPyUnicode */
+static PyObject* __Pyx_PyUnicode_Join(PyObject* value_tuple, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char) {
+#if CYTHON_USE_UNICODE_INTERNALS && CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    PyObject *result_uval;
+    int result_ukind, kind_shift;
+    Py_ssize_t i, char_pos;
+    void *result_udata;
+    CYTHON_MAYBE_UNUSED_VAR(max_char);
+#if CYTHON_PEP393_ENABLED
+    result_uval = PyUnicode_New(result_ulength, max_char);
+    if (unlikely(!result_uval)) return NULL;
+    result_ukind = (max_char <= 255) ? PyUnicode_1BYTE_KIND : (max_char <= 65535) ? PyUnicode_2BYTE_KIND : PyUnicode_4BYTE_KIND;
+    kind_shift = (result_ukind == PyUnicode_4BYTE_KIND) ? 2 : result_ukind - 1;
+    result_udata = PyUnicode_DATA(result_uval);
+#else
+    result_uval = PyUnicode_FromUnicode(NULL, result_ulength);
+    if (unlikely(!result_uval)) return NULL;
+    result_ukind = sizeof(Py_UNICODE);
+    kind_shift = (result_ukind == 4) ? 2 : result_ukind - 1;
+    result_udata = PyUnicode_AS_UNICODE(result_uval);
+#endif
+    assert(kind_shift == 2 || kind_shift == 1 || kind_shift == 0);
+    char_pos = 0;
+    for (i=0; i < value_count; i++) {
+        int ukind;
+        Py_ssize_t ulength;
+        void *udata;
+        PyObject *uval = PyTuple_GET_ITEM(value_tuple, i);
+        if (unlikely(__Pyx_PyUnicode_READY(uval)))
+            goto bad;
+        ulength = __Pyx_PyUnicode_GET_LENGTH(uval);
+        if (unlikely(!ulength))
+            continue;
+        if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - ulength < char_pos))
+            goto overflow;
+        ukind = __Pyx_PyUnicode_KIND(uval);
+        udata = __Pyx_PyUnicode_DATA(uval);
+        if (!CYTHON_PEP393_ENABLED || ukind == result_ukind) {
+            memcpy((char *)result_udata + (char_pos << kind_shift), udata, (size_t) (ulength << kind_shift));
+        } else {
+            #if PY_VERSION_HEX >= 0x030d0000
+            if (unlikely(PyUnicode_CopyCharacters(result_uval, char_pos, uval, 0, ulength) < 0)) goto bad;
+            #elif CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030300F0 || defined(_PyUnicode_FastCopyCharacters)
+            _PyUnicode_FastCopyCharacters(result_uval, char_pos, uval, 0, ulength);
+            #else
+            Py_ssize_t j;
+            for (j=0; j < ulength; j++) {
+                Py_UCS4 uchar = __Pyx_PyUnicode_READ(ukind, udata, j);
+                __Pyx_PyUnicode_WRITE(result_ukind, result_udata, char_pos+j, uchar);
+            }
+            #endif
+        }
+        char_pos += ulength;
+    }
+    return result_uval;
+overflow:
+    PyErr_SetString(PyExc_OverflowError, "join() result is too long for a Python string");
+bad:
+    Py_DECREF(result_uval);
+    return NULL;
+#else
+    CYTHON_UNUSED_VAR(max_char);
+    CYTHON_UNUSED_VAR(result_ulength);
+    CYTHON_UNUSED_VAR(value_count);
+    return PyUnicode_Join(__pyx_empty_unicode, value_tuple);
+#endif
 }
 
 /* UnicodeConcatInPlace */

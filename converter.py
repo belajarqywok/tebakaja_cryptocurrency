@@ -1,11 +1,5 @@
 import json
 
-"""
-
-    Data Mining Assignment - Group 5
-
-"""
-
 class JSONProcessor:
     def __init__(self, input_file: str, output_file: str) -> None:
         self.input_file:  str = input_file

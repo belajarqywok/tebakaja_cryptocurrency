@@ -1,18 +1,22 @@
 from restful.cutils.utilities import Utilities
-from restful.schemas import CryptocurrencyPredictionSchema
+from restful.schemas import ForecastingServiceSchema
 
-class cryptocurrency_svc:
-	# Prediction Utilities
-	__PRED_UTILS = Utilities()
 
-	# Prediction Service
-	async def prediction(self, payload: CryptocurrencyPredictionSchema) -> dict:
-		days: int     = payload.days
-		currency: str = payload.currency
+""" Forecasting Service """
+class ForecastingService:
 
-		actuals, predictions = await self.__PRED_UTILS.cryptocurrency_prediction_utils(
+	__FORECAST_UTILS = Utilities()
+
+	async def forecasting(self, payload: ForecastingServiceSchema) -> dict:
+		days: int      = payload.days
+		currency: str  = payload.currency
+		algorithm: str = payload.algorithm
+
+		actuals, predictions = await self.__FORECAST_UTILS.forecasting_utils(
 			days            = days,
+			algorithm       = algorithm,
 			model_name      = currency,
+
 			sequence_length = 60
 		)
 

@@ -11,8 +11,8 @@ on:
     # 18 - 7 = 11
 
 jobs:
-  extraction_train_modeling:
-    name: Data Extraction, Training, and Modeling
+  scraping_extracting:
+    name: Scraping, and Extracting
     runs-on: ubuntu-latest
 
     steps:
@@ -51,13 +51,81 @@ jobs:
           go run scraper.go \
             --symbols-file=./postman/symbols_test.json
 
+      - name: Zip Datasets
+        if: env.match != 'true'
+        run: zip -r datasets.zip datasets
+
+      - name: Store Datasets to Google Drive 
+        if: env.match != 'true'
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.GDRIVE_LSTM_GRU_CRED }}
+          filename: datasets.zip
+          folderId: ${{ secrets.GDRIVE_LSTM_GRU_ID }}
+          name: datasets.zip
+          overwrite: "true"
+
+      - name: Upload Artifact (datasets)
+        uses: actions/upload-artifact@v3
+        with:
+          name: datasets
+          path: datasets.zip
+
+      - name: Remove Temporarary Files and Directories
+        if: env.match != 'true'
+        run: |
+          rm datasets.zip
+          rm -rf datasets
+
+
+  preprocessing_training:
+    name: Preprocessing, and Training 
+    runs-on: ubuntu-latest
+    needs: scraping_extracting
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          lfs: true
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Read pipeline schedule date
+        id: read_schedule
+        run: |
+          SCHEDULE_DATE=$(cat schedulers/lstm_gru_schedule.ctl)
+          echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+
+      - name: Get current date
+        id: get_date
+        run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Check if dates match
+        id: date_check
+        run: |
+          if [ "$schedule_date" = "$current_date" ]; then
+            echo "match=true" >> $GITHUB_ENV
+          else
+            echo "match=false" >> $GITHUB_ENV
+          fi
+
       - name: Install Libraries
         if: env.match != 'true'
         run: pip install -r requirements.txt
 
+      - name: Download Artifact (datasets)
+        uses: actions/download-artifact@v3
+        with:
+          name: datasets
+
       - name: Modeling and Training
         if: env.match != 'true'
         run: |
+          unzip datasets.zip
+
           mkdir models
           mkdir pickles
           mkdir posttrained
@@ -77,18 +145,7 @@ jobs:
         run: |
           zip -r models.zip models
           zip -r pickles.zip pickles
-          zip -r datasets.zip datasets
           zip -r posttrained.zip posttrained
-
-      - name: Store Datasets to Google Drive 
-        if: env.match != 'true'
-        uses: adityak74/google-drive-upload-git-action@main
-        with:
-          credentials: ${{ secrets.GDRIVE_LSTM_GRU_CRED }}
-          filename: datasets.zip
-          folderId: ${{ secrets.GDRIVE_LSTM_GRU_ID }}
-          name: datasets.zip
-          overwrite: "true"
           
       - name: Store Models to Google Drive 
         if: env.match != 'true'
@@ -125,12 +182,10 @@ jobs:
         run: |
           rm models.zip
           rm pickles.zip
-          rm datasets.zip
           rm posttrained.zip
 
           rm -rf models
           rm -rf pickles
-          rm -rf datasets
           rm -rf posttrained
 
       - name: Commit changes
@@ -148,44 +203,217 @@ jobs:
           github_token: ${{ secrets.GH_TOKEN }}
           branch: production 
 
-  # model_deployment:
-  #   name: Model Deployment
-  #   runs-on: ubuntu-latest
-  #   needs: extraction_train_modeling
-  #   environment: Production
 
-  #   env:
-  #     HF_TOKEN: ${{ secrets.HF_TOKEN }}
-  #     SPACE_NAME: cryptocurrency_prediction
-  #     HF_USERNAME: qywok
+  tebakaja_crypto_space-0:
+    name: crypto-forecast-svc-0
+    runs-on: ubuntu-latest
+    needs: preprocessing_training
+    environment: Production
 
-  #   steps:
-  #     - name: Set global directory
-  #       run: git config --global --add safe.directory /github/workspace
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_cryptocurrency_space-0
+      HF_USERNAME: tebakaja
 
-  #     - uses: actions/checkout@v3     
-  #       with:
-  #         persist-credentials: false
-  #         fetch-depth: 1000
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
 
-  #     - name: Check git status
-  #       run: git status
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
 
-  #     - name: Configure git
-  #       run: |
-  #         git config --local user.email "alfariqyraihan@gmail.com"
-  #         git config --local user.name "qywok"
+      - name: Check git status
+        run: git status
 
-  #     - name: Pull changes from remote
-  #       run: |
-  #         git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
-  #         (git merge --strategy-option theirs)
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
 
-  #     - name: Add and commit changes
-  #       run: |
-  #         git add -A 
-  #         git diff-index --quiet HEAD || git commit -m "Model Deployment"
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          (git merge --strategy-option theirs)
 
-  #     - name: Push to Hugging Face
-  #       run: |
-  #         git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "Model Deployment"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+
+
+  tebakaja_crypto_space-1:
+    name: crypto-forecast-svc-1
+    runs-on: ubuntu-latest
+    needs: preprocessing_training
+    environment: Production
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_cryptocurrency_space-1
+      HF_USERNAME: tebakaja
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          (git merge --strategy-option theirs)
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "Model Deployment"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+
+
+  tebakaja_crypto_space-2:
+    name: crypto-forecast-svc-2
+    runs-on: ubuntu-latest
+    needs: preprocessing_training
+    environment: Production
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_cryptocurrency_space-2
+      HF_USERNAME: tebakaja
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          (git merge --strategy-option theirs)
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "Model Deployment"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+
+
+  tebakaja_crypto_space-3:
+    name: crypto-forecast-svc-3
+    runs-on: ubuntu-latest
+    needs: preprocessing_training
+    environment: Production
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_cryptocurrency_space-3
+      HF_USERNAME: tebakaja
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          (git merge --strategy-option theirs)
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "Model Deployment"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+
+
+  tebakaja_crypto_space-4:
+    name: crypto-forecast-svc-4
+    runs-on: ubuntu-latest
+    needs: preprocessing_training
+    environment: Production
+
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      SPACE_NAME: tebakaja_cryptocurrency_space-4
+      HF_USERNAME: tebakaja
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1000
+
+      - name: Check git status
+        run: git status
+
+      - name: Configure git
+        run: |
+          git config --local user.email "alfariqyraihan@gmail.com"
+          git config --local user.name "qywok"
+
+      - name: Pull changes from remote
+        run: |
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          (git merge --strategy-option theirs)
+
+      - name: Add and commit changes
+        run: |
+          git add -A 
+          git diff-index --quiet HEAD || git commit -m "Model Deployment"
+
+      - name: Push to Hugging Face
+        run: |
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force

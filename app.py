@@ -20,7 +20,7 @@ app.add_middleware(
 app.include_router(
     router = route,
     prefix = '/crypto',
-    tags = ['Crypto']
+    tags = ['Cryptocurrency']
 )
 
 @app.get("/", tags = ['Main'])

@@ -6,17 +6,21 @@ from tensorflow.keras.models import load_model
 import cython
 
 cdef class Utilities:
-    async def cryptocurrency_prediction_utils(self,
-        int days, int sequence_length, str model_name) -> tuple:
-        cdef str model_path = os.path.join('./models', f'{model_name}.keras')
+    async def forecasting_utils(self, int sequence_length,
+        int days, str model_name, str algorithm) -> tuple:
+        cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
+            f'{model_name}.keras')
         model = load_model(model_path)
 
-        cdef str dataframe_path = os.path.join('./posttrained', f'{model_name}-posttrained.json')
+        cdef str dataframe_path = os.path.join(f'./resources/algorithms/{algorithm}/posttrained',
+            f'{model_name}-posttrained.json')
         dataframe = read_json(dataframe_path)
         dataframe.set_index('Date', inplace=True)
 
-        minmax_scaler = load(os.path.join('./pickles', f'{model_name}_minmax_scaler.pickle'))
-        standard_scaler = load(os.path.join('./pickles', f'{model_name}_standard_scaler.pickle'))
+        minmax_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
+            f'{model_name}_minmax_scaler.pickle'))
+        standard_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
+            f'{model_name}_standard_scaler.pickle'))
         
         # Prediction
         lst_seq = dataframe[-sequence_length:].values

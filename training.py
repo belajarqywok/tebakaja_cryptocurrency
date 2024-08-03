@@ -173,8 +173,6 @@ def main(algorithm: str, sequence_length: int, epochs: int, batch_size: int):
     posttrained   = './posttrained'
     pickle_file   = './pickles'
 
-    batch_size = 32
-
     data_processor = DataProcessor(datasets_path)
 
     for dataset in data_processor.datasets:

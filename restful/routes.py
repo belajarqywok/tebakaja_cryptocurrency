@@ -1,25 +1,31 @@
 from fastapi import APIRouter, Body
 from fastapi.responses import JSONResponse
-from restful.controllers import cryptocurrency_controller
-from restful.schemas import CryptocurrencyPredictionSchema
+from restful.controllers import ForecastingControllers
+from restful.schemas import ForecastingServiceSchema
 
-# Route
+""" API Router """
 route = APIRouter()
 
-# Controller
-__CONTROLLER = cryptocurrency_controller()
+""" Forecasting Controller """
+__CONTROLLER = ForecastingControllers()
 
-# Cryptocurrency List
-@route.get(path = '/lists')
-async def cryptocurrency_list_route() -> JSONResponse:
-    # Cryptocurrency Controller
-    return await __CONTROLLER.crypto_list()
 
-# Cryptocurrency Prediction
-@route.post(path = '/prediction')
-async def cryptocurrency_pred_route(
-    payload: CryptocurrencyPredictionSchema = Body(...)
+""" Algorithms Route """
+@route.get(path = '/algorithms')
+async def algorithms_route() -> JSONResponse:
+    return await __CONTROLLER.algorithms_controller()
+
+
+""" Currencies Route """
+@route.get(path = '/currencies')
+async def currencies_route() -> JSONResponse:
+    return await __CONTROLLER.currencies_controller()
+
+
+""" Forecasting Route """
+@route.post(path = '/forecasting')
+async def forecasting_route(
+    payload: ForecastingServiceSchema = Body(...)
 ) -> JSONResponse:
-    # Cryptocurrency Controller
-    return await __CONTROLLER.prediction(payload = payload)
+    return await __CONTROLLER.forecasting_controller(payload = payload)
 
