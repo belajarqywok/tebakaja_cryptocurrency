@@ -3,7 +3,7 @@ name: GRU Pipeline
 on:
   push:
     branches:
-      - production
+      - main
     tags:
       - '*'   
   schedule:
@@ -12,8 +12,9 @@ on:
 
 jobs:
   scraping_extracting:
-    name: Scraping, and Extracting
+    name: Scraping and Extracting
     runs-on: ubuntu-latest
+    environment: Scraping and Extraction
 
     steps:
       - name: Set global directory
@@ -66,6 +67,7 @@ jobs:
           overwrite: "true"
 
       - name: Upload Artifact (datasets)
+        if: env.match != 'true'
         uses: actions/upload-artifact@v3
         with:
           name: datasets
@@ -79,9 +81,10 @@ jobs:
 
 
   preprocessing_training:
-    name: Preprocessing, and Training 
+    name: Preprocessing and Training 
     runs-on: ubuntu-latest
     needs: scraping_extracting
+    environment: Preprocessing and Training 
 
     steps:
       - name: Set global directory
@@ -117,6 +120,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Download Artifact (datasets)
+        if: env.match != 'true'
         uses: actions/download-artifact@v3
         with:
           name: datasets
@@ -201,14 +205,14 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          branch: production 
+          branch: main 
 
 
   tebakaja_crypto_space-0:
     name: crypto-forecast-svc-0
     runs-on: ubuntu-latest
     needs: preprocessing_training
-    environment: Production
+    environment: Deployment
 
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -234,7 +238,7 @@ jobs:
 
       - name: Pull changes from remote
         run: |
-          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
@@ -244,14 +248,14 @@ jobs:
 
       - name: Push to Hugging Face
         run: |
-          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
 
 
   tebakaja_crypto_space-1:
     name: crypto-forecast-svc-1
     runs-on: ubuntu-latest
     needs: preprocessing_training
-    environment: Production
+    environment: Deployment
 
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -277,7 +281,7 @@ jobs:
 
       - name: Pull changes from remote
         run: |
-          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
@@ -287,14 +291,14 @@ jobs:
 
       - name: Push to Hugging Face
         run: |
-          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
 
 
   tebakaja_crypto_space-2:
     name: crypto-forecast-svc-2
     runs-on: ubuntu-latest
     needs: preprocessing_training
-    environment: Production
+    environment: Deployment
 
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -320,7 +324,7 @@ jobs:
 
       - name: Pull changes from remote
         run: |
-          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
@@ -330,14 +334,14 @@ jobs:
 
       - name: Push to Hugging Face
         run: |
-          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
 
 
   tebakaja_crypto_space-3:
     name: crypto-forecast-svc-3
     runs-on: ubuntu-latest
     needs: preprocessing_training
-    environment: Production
+    environment: Deployment
 
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -363,7 +367,7 @@ jobs:
 
       - name: Pull changes from remote
         run: |
-          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
@@ -373,14 +377,14 @@ jobs:
 
       - name: Push to Hugging Face
         run: |
-          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
 
 
   tebakaja_crypto_space-4:
     name: crypto-forecast-svc-4
     runs-on: ubuntu-latest
     needs: preprocessing_training
-    environment: Production
+    environment: Deployment
 
     env:
       HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -406,7 +410,7 @@ jobs:
 
       - name: Pull changes from remote
         run: |
-          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production || \
+          git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
@@ -416,4 +420,31 @@ jobs:
 
       - name: Push to Hugging Face
         run: |
-          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME production --force
+          git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
+
+  functional_testing:
+    name: Functional Testing
+    runs-on: ubuntu-latest
+
+    needs:
+      - tebakaja_crypto_space-0
+      - tebakaja_crypto_space-1
+      - tebakaja_crypto_space-2
+      - tebakaja_crypto_space-3
+      - tebakaja_crypto_space-4
+
+    steps:
+      - name: Set global directory
+        run: git config --global --add safe.directory /github/workspace
+
+      - uses: actions/checkout@v3     
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Testing Proxy Endpoints
+        run: |
+          sleep 60
+          chmod +x endpoints_test.sh && ./endpoints_test.sh
+

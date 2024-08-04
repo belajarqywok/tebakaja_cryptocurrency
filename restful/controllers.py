@@ -44,7 +44,7 @@ class ForecastingControllers:
     """
     async def currencies_controller(self) -> JSONResponse:
         try:
-            path: str = './resources/datasets'
+            path: str = 'resources/datasets'
             datasets: list = sorted(
                 [
                     item.replace(".csv", "") for item in os.listdir(path)
@@ -79,7 +79,7 @@ class ForecastingControllers:
     """
     async def forecasting_controller(self, payload: ForecastingServiceSchema) -> JSONResponse:
         try:
-            path: str = './resources/datasets'
+            path: str = 'resources/datasets'
             datasets: list = sorted(
                 [
                     item.replace(".csv", "") for item in os.listdir(path)
