@@ -186,10 +186,12 @@ jobs:
         run: |
           rm models.zip
           rm pickles.zip
+          rm datasets.zip
           rm posttrained.zip
 
           rm -rf models
           rm -rf pickles
+          rm -rf datasets
           rm -rf posttrained
 
       - name: Commit changes
@@ -205,7 +207,15 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          branch: main 
+          branch: main
+
+      - name: Flush All Caching Data (Redis)
+        if: env.match != 'true'
+        run: |
+          echo "FLUSHALL" | redis-cli --tls \
+            -h ${{ secrets.REDIS_HOST }} \
+            -p ${{ secrets.REDIS_PORT }} \
+            -a ${{ secrets.REDIS_TOKEN }}
 
 
   tebakaja_crypto_space-0:

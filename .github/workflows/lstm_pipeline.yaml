@@ -186,10 +186,12 @@ jobs:
         run: |
           rm models.zip
           rm pickles.zip
+          rm datasets.zip
           rm posttrained.zip
 
           rm -rf models
           rm -rf pickles
+          rm -rf datasets
           rm -rf posttrained
 
       - name: Commit changes

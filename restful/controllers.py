@@ -1,22 +1,23 @@
 import os
 from http import HTTPStatus
+from typing import _ProtocolMeta
 from fastapi.responses import JSONResponse
 from restful.services import ForecastingService
 from restful.schemas import ForecastingServiceSchema
 
 
-""" Forecasting Controller """
+# Forecasting Controller
 class ForecastingControllers:
 
     __SERVICE: ForecastingService = ForecastingService()
 
 
-    """
-        Algorithms Controller
-    """
+    # Algorithms Controller
     async def algorithms_controller(self) -> JSONResponse:
         try:
-            algorithms: list = sorted(os.listdir("resources/algorithms"))
+            algorithms: list = sorted(
+                os.listdir("resources/algorithms"))
+
             return JSONResponse(
                 content = {
                     'message': 'Success',
@@ -39,16 +40,15 @@ class ForecastingControllers:
 
 
 
-    """
-        Currency Controller
-    """
+    # Currency Controller
     async def currencies_controller(self) -> JSONResponse:
         try:
             path: str = 'resources/datasets'
             datasets: list = sorted(
                 [
                     item.replace(".csv", "") for item in os.listdir(path)
-                    if os.path.isfile(os.path.join(path, item)) and item.endswith('.csv')
+                    if os.path.isfile(os.path.join(path, item)) 
+                        and item.endswith('.csv')
                 ]
             )
 
@@ -74,10 +74,9 @@ class ForecastingControllers:
 
 
 
-    """ 
-        Forecasting Controller
-    """
-    async def forecasting_controller(self, payload: ForecastingServiceSchema) -> JSONResponse:
+    # Forecasting Controller
+    async def forecasting_controller(self, payload: ForecastingServiceSchema,
+        caching: _ProtocolMeta) -> JSONResponse:
         try:
             path: str = 'resources/datasets'
             datasets: list = sorted(
@@ -120,7 +119,8 @@ class ForecastingControllers:
                 )
 
 
-            prediction: dict = await self.__SERVICE.forecasting(payload)
+            prediction: dict = await self.__SERVICE.forecasting(
+                payload = payload, caching = caching)
 
             if not prediction :
                 return JSONResponse(

@@ -1,13 +1,14 @@
 import os
+import cython
 from joblib import load
 from numpy import append, expand_dims
 from pandas import read_json, to_datetime, Timedelta
 from tensorflow.keras.models import load_model
-import cython
+
 
 cdef class Utilities:
     async def forecasting_utils(self, int sequence_length,
-        int days, str model_name, str algorithm) -> tuple:
+        int days, str model_name, str algorithm, bint with_pred) -> tuple:
         cdef str model_path = os.path.join(f'./resources/algorithms/{algorithm}/models',
             f'{model_name}.keras')
         model = load_model(model_path)
@@ -21,27 +22,30 @@ cdef class Utilities:
             f'{model_name}_minmax_scaler.pickle'))
         standard_scaler = load(os.path.join(f'./resources/algorithms/{algorithm}/pickles',
             f'{model_name}_standard_scaler.pickle'))
-        
-        # Prediction
-        lst_seq = dataframe[-sequence_length:].values
-        lst_seq = expand_dims(lst_seq, axis=0)
 
-        cdef dict predicted_prices = {}
-        last_date = to_datetime(dataframe.index[-1])
+        if with_pred:
+            # Prediction
+            lst_seq = dataframe[-sequence_length:].values
+            lst_seq = expand_dims(lst_seq, axis=0)
 
-        for _ in range(days):
-            predicted_price = model.predict(lst_seq)
-            last_date = last_date + Timedelta(days=1)
+            predicted_prices = {}
+            last_date = to_datetime(dataframe.index[-1])
 
-            predicted_prices[last_date] = minmax_scaler.inverse_transform(predicted_price)
-            predicted_prices[last_date] = standard_scaler.inverse_transform(predicted_prices[last_date])
+            for _ in range(days):
+                predicted_price = model.predict(lst_seq)
+                last_date = last_date + Timedelta(days=1)
 
-            lst_seq = append(lst_seq[:, 1:, :], [predicted_price], axis=1)
+                predicted_prices[last_date] = minmax_scaler.inverse_transform(predicted_price)
+                predicted_prices[last_date] = standard_scaler.inverse_transform(predicted_prices[last_date])
 
-        predictions = [
-            {'date': date.strftime('%Y-%m-%d'), 'price': float(price)} \
-                for date, price in predicted_prices.items()
-        ]
+                lst_seq = append(lst_seq[:, 1:, :], [predicted_price], axis=1)
+
+            predictions = [
+                {'date': date.strftime('%Y-%m-%d'), 'price': float(price)} \
+                    for date, price in predicted_prices.items()
+            ]
+
+        else: predictions = []
 
         # Actual
         df_date = dataframe.index[-sequence_length:].values

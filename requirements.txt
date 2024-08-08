@@ -7,7 +7,9 @@ pandas==2.2.2
 protobuf==4.25.3
 pydantic==2.7.2
 pydantic_core==2.18.3
+redis==3.5.3
 scikit-learn==1.5.0
 scipy==1.13.1
 tensorflow==2.16.1
 uvicorn==0.30.1
+valkey==6.0.0b1

@@ -9,6 +9,8 @@
 /Include
 /Scripts
 
+.env
+
 # Pycache
 /__pycache__
 /restful/__pycache__

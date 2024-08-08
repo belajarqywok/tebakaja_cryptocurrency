@@ -1,13 +1,22 @@
+from typing import _ProtocolMeta
 from fastapi import APIRouter, Body
 from fastapi.responses import JSONResponse
-from restful.controllers import ForecastingControllers
+
+from restful.cachings import connector
 from restful.schemas import ForecastingServiceSchema
+from restful.controllers import ForecastingControllers
+
 
 """ API Router """
 route = APIRouter()
 
+
 """ Forecasting Controller """
-__CONTROLLER = ForecastingControllers()
+__CONTROLLER: ForecastingControllers = ForecastingControllers()
+
+
+""" Caching Connector """
+__CONNECTOR: _ProtocolMeta = connector
 
 
 """ Algorithms Route """
@@ -27,5 +36,5 @@ async def currencies_route() -> JSONResponse:
 async def forecasting_route(
     payload: ForecastingServiceSchema = Body(...)
 ) -> JSONResponse:
-    return await __CONTROLLER.forecasting_controller(payload = payload)
+    return await __CONTROLLER.forecasting_controller(payload = payload, caching = __CONNECTOR)
 
