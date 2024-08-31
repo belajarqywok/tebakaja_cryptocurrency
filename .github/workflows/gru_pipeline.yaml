@@ -10,6 +10,7 @@ on:
     - cron: "0 7 * * *"
     # 14 - 7 = 7
 
+
 jobs:
   scraping_extracting:
     name: Scraping and Extracting
@@ -26,38 +27,38 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
-      - name: Read pipeline schedule date
-        id: read_schedule
-        run: |
-          SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
-          echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
 
-      - name: Get current date
-        id: get_date
-        run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      - name: Check if dates match
-        id: date_check
-        run: |
-          if [ "$schedule_date" = "$current_date" ]; then
-            echo "match=true" >> $GITHUB_ENV
-          else
-            echo "match=false" >> $GITHUB_ENV
-          fi
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Scraping Yahoo Finance
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           mkdir datasets
           go run scraper.go \
             --symbols-file=./postman/symbols_test.json
 
       - name: Zip Datasets
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: zip -r datasets.zip datasets
 
       - name: Store Datasets to Google Drive 
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_GRU_CRED }}
@@ -67,17 +68,18 @@ jobs:
           overwrite: "true"
 
       - name: Upload Artifact (datasets)
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: actions/upload-artifact@v3
         with:
           name: datasets
           path: datasets.zip
 
       - name: Remove Temporarary Files and Directories
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           rm datasets.zip
           rm -rf datasets
+
 
 
   preprocessing_training:
@@ -96,37 +98,37 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
-      - name: Read pipeline schedule date
-        id: read_schedule
-        run: |
-          SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
-          echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
 
-      - name: Get current date
-        id: get_date
-        run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      - name: Check if dates match
-        id: date_check
-        run: |
-          if [ "$schedule_date" = "$current_date" ]; then
-            echo "match=true" >> $GITHUB_ENV
-          else
-            echo "match=false" >> $GITHUB_ENV
-          fi
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Install Libraries
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: pip install -r requirements.txt
 
       - name: Download Artifact (datasets)
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: actions/download-artifact@v3
         with:
           name: datasets
 
       - name: Modeling and Training
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           unzip datasets.zip
 
@@ -139,20 +141,16 @@ jobs:
             --batchs=32      \
             --sequences=5    \
             --algorithm=GRU
-
-      - name: Set Pipeline Schedule
-        if: env.match != 'true'
-        run: echo "$(date +'%Y-%m-%d')" > schedulers/gru_schedule.ctl
           
       - name: Zip Posttrained, Models, and Pickles
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           zip -r models.zip models
           zip -r pickles.zip pickles
           zip -r posttrained.zip posttrained
           
       - name: Store Models to Google Drive 
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_GRU_CRED }}
@@ -162,7 +160,7 @@ jobs:
           overwrite: "true"
 
       - name: Store Pickles to Google Drive 
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_GRU_CRED }}
@@ -172,7 +170,7 @@ jobs:
           overwrite: "true"
 
       - name: Store Posttrained to Google Drive 
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_GRU_CRED }}
@@ -182,7 +180,7 @@ jobs:
           overwrite: "true"
 
       - name: Remove Temporarary Files and Directories
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           rm models.zip
           rm pickles.zip
@@ -194,29 +192,15 @@ jobs:
           rm -rf datasets
           rm -rf posttrained
 
-      - name: Commit changes
-        if: env.match != 'true'
-        run: |
-          git config --local user.email "belajarqywok@gmail.com"
-          git config --local user.name "belajarqywok"
-          git add -A
-          git commit -m "Data Extraction, Training, and Modeling"
-
-      - name: Push changes
-        if: env.match != 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          branch: main
-
       - name: Flush All Caching Data (Redis)
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           sudo apt install -y redis-tools
           echo "FLUSHALL" | redis-cli --tls \
             -h ${{ secrets.REDIS_HOST }} \
             -p ${{ secrets.REDIS_PORT }} \
             -a ${{ secrets.REDIS_TOKEN }}
+
 
 
   tebakaja_crypto_space-0:
@@ -239,27 +223,48 @@ jobs:
           persist-credentials: false
           fetch-depth: 1000
 
-      - name: Check git status
-        run: git status
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Configure git
+        # if: env.match != 'true'
         run: |
           git config --local user.email "alfariqyraihan@gmail.com"
           git config --local user.name "qywok"
 
       - name: Pull changes from remote
+        # if: env.match != 'true'
         run: |
           git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
+        # if: env.match != 'true'
         run: |
           git add -A 
           git diff-index --quiet HEAD || git commit -m "Model Deployment"
 
       - name: Push to Hugging Face
+        # if: env.match != 'true'
         run: |
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
 
 
   tebakaja_crypto_space-1:
@@ -282,27 +287,48 @@ jobs:
           persist-credentials: false
           fetch-depth: 1000
 
-      - name: Check git status
-        run: git status
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Configure git
+        # if: env.match != 'true'
         run: |
           git config --local user.email "alfariqyraihan@gmail.com"
           git config --local user.name "qywok"
 
       - name: Pull changes from remote
+        # if: env.match != 'true'
         run: |
           git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
+        # if: env.match != 'true'
         run: |
           git add -A 
           git diff-index --quiet HEAD || git commit -m "Model Deployment"
 
       - name: Push to Hugging Face
+        # if: env.match != 'true'
         run: |
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
 
 
   tebakaja_crypto_space-2:
@@ -325,27 +351,48 @@ jobs:
           persist-credentials: false
           fetch-depth: 1000
 
-      - name: Check git status
-        run: git status
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Configure git
+        # if: env.match != 'true'
         run: |
           git config --local user.email "alfariqyraihan@gmail.com"
           git config --local user.name "qywok"
 
       - name: Pull changes from remote
+        # if: env.match != 'true'
         run: |
           git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
+        # if: env.match != 'true'
         run: |
           git add -A 
           git diff-index --quiet HEAD || git commit -m "Model Deployment"
 
       - name: Push to Hugging Face
+        # if: env.match != 'true'
         run: |
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
 
 
   tebakaja_crypto_space-3:
@@ -368,27 +415,48 @@ jobs:
           persist-credentials: false
           fetch-depth: 1000
 
-      - name: Check git status
-        run: git status
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Configure git
+        # if: env.match != 'true'
         run: |
           git config --local user.email "alfariqyraihan@gmail.com"
           git config --local user.name "qywok"
 
       - name: Pull changes from remote
+        # if: env.match != 'true'
         run: |
           git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
+        # if: env.match != 'true'
         run: |
           git add -A 
           git diff-index --quiet HEAD || git commit -m "Model Deployment"
 
       - name: Push to Hugging Face
+        # if: env.match != 'true'
         run: |
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
 
 
   tebakaja_crypto_space-4:
@@ -411,27 +479,48 @@ jobs:
           persist-credentials: false
           fetch-depth: 1000
 
-      - name: Check git status
-        run: git status
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Configure git
+        # if: env.match != 'true'
         run: |
           git config --local user.email "alfariqyraihan@gmail.com"
           git config --local user.name "qywok"
 
       - name: Pull changes from remote
+        # if: env.match != 'true'
         run: |
           git pull https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main || \
           (git merge --strategy-option theirs)
 
       - name: Add and commit changes
+        # if: env.match != 'true'
         run: |
           git add -A 
           git diff-index --quiet HEAD || git commit -m "Model Deployment"
 
       - name: Push to Hugging Face
+        # if: env.match != 'true'
         run: |
           git push https://$HF_USERNAME:$HF_TOKEN@huggingface.co/spaces/$HF_USERNAME/$SPACE_NAME main --force
+
 
 
   functional_testing:
@@ -454,8 +543,47 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/gru_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
+
       - name: Testing Proxy Endpoints
+        # if: env.match != 'true'
         run: |
           sleep 60
           chmod +x endpoints_test.sh && ./endpoints_test.sh
+
+      - name: Set Pipeline Schedule
+        # if: env.match != 'true'
+        run: echo "$(date +'%Y-%m-%d')" > schedulers/gru_schedule.ctl
+
+      # - name: Commit changes
+      #   if: env.match != 'true'
+      #   run: |
+      #     git config --local user.email "belajarqywok@gmail.com"
+      #     git config --local user.name "belajarqywok"
+      #     git add -A
+      #     git commit -m "Data Extraction, Training, and Modeling"
+
+      # - name: Push changes
+      #   if: env.match != 'true'
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GH_TOKEN }}
+      #     branch: main
 

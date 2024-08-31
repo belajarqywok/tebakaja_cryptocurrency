@@ -10,6 +10,7 @@ on:
     - cron: "0 9 * * *"
     # 16 - 7 = 9
 
+
 jobs:
   scraping_extracting:
     name: Scraping and Extracting
@@ -26,38 +27,38 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
-      - name: Read pipeline schedule date
-        id: read_schedule
-        run: |
-          SCHEDULE_DATE=$(cat schedulers/lstm_schedule.ctl)
-          echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/lstm_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
 
-      - name: Get current date
-        id: get_date
-        run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      - name: Check if dates match
-        id: date_check
-        run: |
-          if [ "$schedule_date" = "$current_date" ]; then
-            echo "match=true" >> $GITHUB_ENV
-          else
-            echo "match=false" >> $GITHUB_ENV
-          fi
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Scraping Yahoo Finance
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           mkdir datasets
           go run scraper.go \
             --symbols-file=./postman/symbols_test.json
 
       - name: Zip Datasets
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: zip -r datasets.zip datasets
 
       - name: Store Datasets to Google Drive 
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_LSTM_CRED }}
@@ -67,14 +68,14 @@ jobs:
           overwrite: "true"
 
       - name: Upload Artifact (datasets)
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: actions/upload-artifact@v3
         with:
           name: datasets
           path: datasets.zip
 
       - name: Remove Temporarary Files and Directories
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           rm datasets.zip
           rm -rf datasets
@@ -96,37 +97,37 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
-      - name: Read pipeline schedule date
-        id: read_schedule
-        run: |
-          SCHEDULE_DATE=$(cat schedulers/lstm_schedule.ctl)
-          echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
+      # - name: Read pipeline schedule date
+      #   id: read_schedule
+      #   run: |
+      #     SCHEDULE_DATE=$(cat schedulers/lstm_schedule.ctl)
+      #     echo "schedule_date=${SCHEDULE_DATE}" >> $GITHUB_ENV
 
-      - name: Get current date
-        id: get_date
-        run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+      # - name: Get current date
+      #   id: get_date
+      #   run: echo "current_date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      - name: Check if dates match
-        id: date_check
-        run: |
-          if [ "$schedule_date" = "$current_date" ]; then
-            echo "match=true" >> $GITHUB_ENV
-          else
-            echo "match=false" >> $GITHUB_ENV
-          fi
+      # - name: Check if dates match
+      #   id: date_check
+      #   run: |
+      #     if [ "$schedule_date" = "$current_date" ]; then
+      #       echo "match=true" >> $GITHUB_ENV
+      #     else
+      #       echo "match=false" >> $GITHUB_ENV
+      #     fi
 
       - name: Install Libraries
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: pip install -r requirements.txt
 
       - name: Download Artifact (datasets)
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: actions/download-artifact@v3
         with:
           name: datasets
 
       - name: Modeling and Training
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           unzip datasets.zip
 
@@ -141,18 +142,18 @@ jobs:
             --algorithm=LSTM
 
       - name: Set Pipeline Schedule
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: echo "$(date +'%Y-%m-%d')" > schedulers/lstm_schedule.ctl
           
       - name: Zip Posttrained, Models, and Pickles
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           zip -r models.zip models
           zip -r pickles.zip pickles
           zip -r posttrained.zip posttrained
           
       - name: Store Models to Google Drive 
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_LSTM_CRED }}
@@ -162,7 +163,7 @@ jobs:
           overwrite: "true"
 
       - name: Store Pickles to Google Drive 
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_LSTM_CRED }}
@@ -172,7 +173,7 @@ jobs:
           overwrite: "true"
 
       - name: Store Posttrained to Google Drive 
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: adityak74/google-drive-upload-git-action@main
         with:
           credentials: ${{ secrets.GDRIVE_LSTM_CRED }}
@@ -182,7 +183,7 @@ jobs:
           overwrite: "true"
 
       - name: Remove Temporarary Files and Directories
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           rm models.zip
           rm pickles.zip
@@ -195,7 +196,7 @@ jobs:
           rm -rf posttrained
 
       - name: Commit changes
-        if: env.match != 'true'
+        # if: env.match != 'true'
         run: |
           git config --local user.email "belajarqywok@gmail.com"
           git config --local user.name "belajarqywok"
@@ -203,7 +204,7 @@ jobs:
           git commit -m "Data Extraction, Training, and Modeling"
 
       - name: Push changes
-        if: env.match != 'true'
+        # if: env.match != 'true'
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
