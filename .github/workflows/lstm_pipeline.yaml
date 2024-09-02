@@ -195,20 +195,20 @@ jobs:
           rm -rf datasets
           rm -rf posttrained
 
-      - name: Commit changes
-        # if: env.match != 'true'
-        run: |
-          git config --local user.email "belajarqywok@gmail.com"
-          git config --local user.name "belajarqywok"
-          git add -A
-          git commit -m "Data Extraction, Training, and Modeling"
+      # - name: Commit changes
+      #   if: env.match != 'true'
+      #   run: |
+      #     git config --local user.email "belajarqywok@gmail.com"
+      #     git config --local user.name "belajarqywok"
+      #     git add -A
+      #     git commit -m "Data Extraction, Training, and Modeling"
 
-      - name: Push changes
-        # if: env.match != 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          branch: main 
+      # - name: Push changes
+      #   if: env.match != 'true'
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GH_TOKEN }}
+      #     branch: main 
 
 
   tebakaja_crypto_space-0:
