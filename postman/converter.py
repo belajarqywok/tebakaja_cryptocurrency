@@ -1,5 +1,6 @@
 import json
 
+# Json Processor
 class JSONProcessor:
     def __init__(self, input_file: str, output_file: str) -> None:
         self.input_file:  str = input_file
@@ -29,6 +30,5 @@ def main():
     processor.load_json()
     symbols = processor.extract_symbols()
     processor.save_json(symbols)
-
 
 if __name__ == "__main__": main()

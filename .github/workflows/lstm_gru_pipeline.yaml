@@ -127,6 +127,15 @@ jobs:
         with:
           name: datasets
 
+      - name: Install Cython and Build ML Module
+        run: |
+          apt-get update && \
+            apt-get install -y gcc python3-dev gnupg
+
+          pip install cython
+          cd training && \
+            python setup.py build_ext --inplace && cd ..
+
       - name: Modeling and Training
         # if: env.match != 'true'
         run: |
@@ -136,15 +145,15 @@ jobs:
           mkdir pickles
           mkdir posttrained
 
-          python training.py \
+          python trainingcli.py \
             --epochs=200     \
             --batchs=32      \
             --sequences=5    \
             --algorithm=LSTM_GRU
 
-      - name: Set Pipeline Schedule
-        # if: env.match != 'true'
-        run: echo "$(date +'%Y-%m-%d')" > schedulers/lstm_gru_schedule.ctl
+      # - name: Set Pipeline Schedule
+      #   if: env.match != 'true'
+      #   run: echo "$(date +'%Y-%m-%d')" > schedulers/lstm_gru_schedule.ctl
           
       - name: Zip Posttrained, Models, and Pickles
         # if: env.match != 'true'
