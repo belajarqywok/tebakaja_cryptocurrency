@@ -83,9 +83,9 @@ jobs:
 
       - name: Install Cython and Build ML Module
         run: |
-          apt-get update && \
-            apt-get install -y \
-              gcc python3-dev gnupg
+          sudo apt-get update && \
+          sudo apt-get install -y \
+            gcc python3-dev gnupg
 
           pip install cython
           cd training && \
