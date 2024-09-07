@@ -5,7 +5,7 @@ filterwarnings('ignore')
 
 
 """ Trainer """
-async def train(dict configuration, X_train, y_train, X_test, y_test):
+def train(dict configuration, X_train, y_train, X_test, y_test):
 	cdef object early_stopping = EarlyStopping(
 		monitor = 'val_loss',
 		patience = 5,

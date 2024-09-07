@@ -6,7 +6,7 @@ filterwarnings('ignore')
 
 
 """ Get Datasets """
-async def get_datasets(str datasets_path):
+def get_datasets(str datasets_path):
   cdef list items = os.listdir(datasets_path)
   cdef list csv_files = []
   cdef str item
@@ -19,7 +19,7 @@ async def get_datasets(str datasets_path):
 
 
 """ Create Sequences """
-async def create_sequences(df, int sequence_length):
+def create_sequences(df, int sequence_length):
   cdef list labels = []
   cdef list sequences = []
   cdef int i
@@ -34,7 +34,7 @@ async def create_sequences(df, int sequence_length):
 
 
 """ Pre-Process Data """
-async def preprocess_data(dataframe):
+def preprocess_data(dataframe):
   cdef str col
 
   for col in dataframe.columns:
@@ -48,7 +48,7 @@ async def preprocess_data(dataframe):
 
 
 """ Scale Data """
-async def scale_data(dataframe, scaler_cls):
+def scale_data(dataframe, scaler_cls):
   scaler = scaler_cls()
   dataframe['Close'] = scaler.fit_transform(dataframe[['Close']])
   return scaler, dataframe

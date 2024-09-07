@@ -1,4 +1,4 @@
-import asyncio
+# import asyncio
 import argparse
 from training.main import main as training
 
@@ -14,16 +14,24 @@ def main() -> None:
     parser.add_argument('-s', '--sequences', type = int, required = True, help = 'sequences length')
 
     args = parser.parse_args()
-    event_loop = asyncio.get_event_loop()
 
-    event_loop.run_until_complete(
-        training(
-            epochs     = args.epochs,
-            batch_size = args.batchs,
-            algorithm  = args.algorithm,
-            sequence_length = args.sequences
-        )
+    training(
+        epochs     = args.epochs,
+        batch_size = args.batchs,
+        algorithm  = args.algorithm,
+        sequence_length = args.sequences
     )
+
+    # event_loop = asyncio.get_event_loop()
+
+    # event_loop.run_until_complete(
+    #     training(
+    #         epochs     = args.epochs,
+    #         batch_size = args.batchs,
+    #         algorithm  = args.algorithm,
+    #         sequence_length = args.sequences
+    #     )
+    # )
 
 
 if __name__ == "__main__": main()

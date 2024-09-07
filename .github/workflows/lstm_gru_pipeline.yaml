@@ -74,7 +74,7 @@ jobs:
           fetch-depth: 1
 
       - name: Install Libraries
-        run: pip install -r requirements.txt
+        run: pip install -r dev.requirements.txt
 
       - name: Download Artifact (datasets)
         uses: actions/download-artifact@v3
