@@ -11,7 +11,7 @@ class ForecastingService:
 
 	async def forecasting(self, payload: ForecastingServiceSchema, caching: _ProtocolMeta) -> dict:
 		caching_data = caching.get(
-			f'{payload.algorithm}_{payload.currency}_{payload.days}')
+			f'CRYPTO_{payload.algorithm}_{payload.currency}_{payload.days}')
 
 		actuals, predictions = await self.__FORECAST_UTILS.forecasting_utils(
 			days        = payload.days,
@@ -27,7 +27,7 @@ class ForecastingService:
 
 		else:
 			caching.set(
-				f'{payload.algorithm}_{payload.currency}_{payload.days}',
+				f'CRYPTO_{payload.algorithm}_{payload.currency}_{payload.days}',
 				json.dumps(predictions)
 			)
 
