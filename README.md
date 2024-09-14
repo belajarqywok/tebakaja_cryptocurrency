@@ -1,5 +1,5 @@
 ---
-title: Cryptocurrency Prediction Service
+title: TebakAja - Cryptocurrency Service
 emoji: 📉
 colorFrom: purple
 colorTo: pink
@@ -9,7 +9,7 @@ pinned: false
 ---
 
 
-<h1 align="center">Cryptocurrency Prediction Service</h1>
+<h1 align="center">TebakAja - Cryptocurrency Service</h1>
 <hr />
 <p align="center">
   <img src="./diagram/cryptocurrency_prediction.jpg"/>
